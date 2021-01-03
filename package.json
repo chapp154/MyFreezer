@@ -1,0 +1,23 @@
+{
+  "name": "myfreezer",
+  "version": "1.0.0",
+  "description": "Freezer items location",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack --config webpack.config.js --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chapp154/MyFreezer.git"
+  },
+  "author": "RadimC",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chapp154/MyFreezer/issues"
+  },
+  "homepage": "https://github.com/chapp154/MyFreezer#readme",
+  "devDependencies": {
+    "webpack": "^5.11.1",
+    "webpack-cli": "^4.3.1"
+  }
+}
