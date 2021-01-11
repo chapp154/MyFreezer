@@ -1,15 +1,33 @@
 .btn {
 
     &__login {
+        transform: skewX(-25deg);
+        padding: 1.2rem 3rem;
+        background: $color-primary-dark-1;
+        border: 0px solid $color-primary-light;
+        border-radius: 3px;
+        outline: none;
+        transition: all .2s;
 
-        display: inline-block;
+        &:hover {
+            background-color: $color-primary-dark-2;
+
+        }
 
         &--about {
 
         }
 
-        &--reg{
-            
+        &--reg { 
+
+        }
+
+        &-text {
+            font-size: 1.7rem;
+            letter-spacing: .1rem;
+            transform: skewX(25deg);
+            display: inline-block;
+            color: $color-primary-light-2;
         }
     }
 }

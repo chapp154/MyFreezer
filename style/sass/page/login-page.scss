@@ -2,7 +2,7 @@
     grid-column: 2 / 3;
     grid-row: 2 / 3;
     justify-self: center;
-    display: none;
+    //display: none;
 
         &__container {
             width: 60rem;
@@ -30,9 +30,13 @@
     grid-column: 2 / 3;
     grid-row: 4 / 5;
     justify-self: center;
-    margin-top: 5rem;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: 13.2rem;
+    align-items: end;
+    grid-gap: 0 15rem;
 
-    & :first-child {
-        margin-right: 5rem;
+    &:first-child {
+       // margin-right: 5rem;
     }
 }
