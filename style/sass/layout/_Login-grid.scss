@@ -1,0 +1,17 @@
+.grid-header {
+    display: grid;
+    grid-template-columns: 5rem auto 5rem;
+    grid-template-rows: 5rem auto 5rem;
+    max-height: 20vh;
+}
+
+.grid-main {
+    display: grid;
+    grid-template-columns: 5rem auto 5rem;
+    grid-template-rows: 5rem auto auto 5rem;
+    max-height: 80vh;
+}
+
+
+
+

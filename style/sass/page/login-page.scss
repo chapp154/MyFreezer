@@ -1,0 +1,38 @@
+.about{
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    justify-self: center;
+    display: none;
+
+        &__container {
+            width: 60rem;
+            height: 40rem;
+            border: 1px solid rgb(146, 132, 132);
+        }
+
+}
+
+.login{
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;
+    justify-self: center;
+    display: none;
+
+        &__form {
+            width: 50rem;
+            height: 30rem;
+            background-color: greenyellow;
+            display: block;
+        }
+}
+
+.login-buttons {
+    grid-column: 2 / 3;
+    grid-row: 4 / 5;
+    justify-self: center;
+    margin-top: 5rem;
+
+    & :first-child {
+        margin-right: 5rem;
+    }
+}
