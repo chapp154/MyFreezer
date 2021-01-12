@@ -23,11 +23,11 @@
         }
 
         &-text {
-            font-size: 1.7rem;
+            font-size: 1.5rem;
             letter-spacing: .1rem;
             transform: skewX(25deg);
             display: inline-block;
-            color: $color-primary-light-2;
+            color: $color-text-1;
         }
     }
 }
