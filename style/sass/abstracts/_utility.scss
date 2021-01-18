@@ -1,0 +1,24 @@
+.animation {
+
+    &__fadeIn--fast {
+        animation: fadeIn .2s;
+    }
+    &__fadeIn--medium {
+        animation: fadeIn 1s;
+    }
+    &__fadeIn--slow {
+        animation: fadeIn 3s;
+    }
+
+    &__moveDown--fast {
+        animation: moveDown 2s;
+    }
+
+    &__slideOpen--fast {
+        animation: slideOpen .2s;
+    }
+
+    &__slideClose--fast {
+        animation: slideClose .2s;
+    }
+}

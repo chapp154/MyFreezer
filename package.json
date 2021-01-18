@@ -17,7 +17,13 @@
   },
   "homepage": "https://github.com/chapp154/MyFreezer#readme",
   "devDependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.34",
+    "@fortawesome/free-brands-svg-icons": "^5.15.2",
+    "@fortawesome/free-regular-svg-icons": "^5.15.2",
+    "@fortawesome/free-solid-svg-icons": "^5.15.2",
+    "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^5.0.1",
+    "html-webpack-plugin": "^4.5.1",
     "sass": "^1.32.0",
     "sass-loader": "^10.1.0",
     "source-map-loader": "^2.0.0",
@@ -26,6 +32,7 @@
     "webpack-cli": "^4.3.1"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.2",
     "firebase": "^8.2.2"
   }
 }

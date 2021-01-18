@@ -17,15 +17,15 @@
 
         grid-column: 1 / 2;
         justify-self: end;
-        color: $color-primary-light;
+        color: $color-blue-4;
     }
 
     &__text--2 {
 
         grid-column: 2 / -1;
         justify-self: start;
-        color: $color-primary-dark-2;
-        background-color: $color-primary-light;
+        color: $color-blue-2;
+        background-color: $color-begie-1;
         border-radius: 0 3px 3px 0;
         animation: moveRightToLeft .3s ease-in 0s 1 backwards;
         //animation: name duration timing-function delay iteration-count direction fill-mode;
