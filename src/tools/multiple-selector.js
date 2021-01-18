@@ -3,5 +3,5 @@ export const multiSelect = (elements) => {
         return document.querySelector(element);
     })
 
-    return elementArr;
+    return elementArr; // const {el1, el2, el3} = multiSelect([".wuff", "#meoww", ".kwak"]);
 }
