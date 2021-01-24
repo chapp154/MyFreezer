@@ -1,3 +1,6 @@
+import {email, password1, password2, validationMsg} from "./form-validations";
+
+
 export const loginFormArrow = () => {
     const elements = document.querySelectorAll(".login-label-arrow");
     elements.forEach(el => {
@@ -7,7 +10,7 @@ export const loginFormArrow = () => {
 
 export const changeLabelContent = (e, contentToReplace = "Login") => {
     if (e) {
-        contentToReplace = e.srcElement.outerText;
+        contentToReplace = e.srcElement.innerText;
         e.target.setAttribute("data-after", contentToReplace);
         return
     }
@@ -16,7 +19,7 @@ export const changeLabelContent = (e, contentToReplace = "Login") => {
 }
 
 export const getFormOption = () => {
-    document.querySelectorAll(".login__form-options input").forEach(element => {
+    document.querySelectorAll(".login__options input").forEach(element => {
         element.addEventListener("click", (e) => {
             const changeForm = new FormSwitcher(e);
             changeForm.switchFormInputs();
@@ -43,6 +46,8 @@ class FormSwitcher {
             newPasswordInput.classList.add("animation__slideOpen--fast");
     
             passwordInput.insertAdjacentElement("afterend", newPasswordInput);
+
+            email.classList.add("wuff");
             return 
         }
         if (this.formState === "login" && passwordElementExist) {

@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.2",
-    "firebase": "^8.2.2"
+    "firebase": "^8.2.2",
+    "live-server": "^1.2.1"
   }
 }
