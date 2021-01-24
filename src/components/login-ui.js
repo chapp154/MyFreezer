@@ -6,7 +6,7 @@ export const loginFormArrow = () => {
     elements.forEach(el => {
         el.addEventListener("click", (e) => changeLabelContent(e));
     })
-}
+} 
 
 export const changeLabelContent = (e, contentToReplace = "Login") => {
     if (e) {
@@ -47,7 +47,6 @@ class FormSwitcher {
     
             passwordInput.insertAdjacentElement("afterend", newPasswordInput);
 
-            email.classList.add("wuff");
             return 
         }
         if (this.formState === "login" && passwordElementExist) {

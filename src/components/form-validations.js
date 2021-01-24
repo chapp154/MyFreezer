@@ -44,4 +44,4 @@ const validationUI = (currInput) => {
     })
 }
 
-export const getValidations = () => validationUI(email); validationUI(password1);
+export const getValidations = () => {validationUI(email); validationUI(password1)};
