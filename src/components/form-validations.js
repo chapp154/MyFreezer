@@ -1,6 +1,6 @@
 import {multiSelect} from "../tools/multiple-selector";
 
-let [email, password, password2, validationMsg] = multiSelect(["#email-reg", "#password-reg", "#password2", ".login__body-validation"]);
+let [email, password, passwordCheck, validationMsg] = multiSelect(["#email-reg", "#password-reg", "#password-reg-check", ".login__body-validation"]);
 
 
 const validationText = (type, input, inputEl) => {
@@ -30,6 +30,7 @@ const validationText = (type, input, inputEl) => {
 }
 
 const validationUI = (currInput) => {
+
 
     if (!currInput) return
     
