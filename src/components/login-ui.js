@@ -1,5 +1,4 @@
-import {email, password1, password2, validationMsg} from "./form-validations";
-
+import {multiSelect} from '../tools/multiple-selector'
 
 export const loginFormArrow = () => {
     const elements = document.querySelectorAll(".login-label-arrow");
@@ -22,7 +21,8 @@ export const getFormOption = () => {
     document.querySelectorAll(".login__options input").forEach(element => {
         element.addEventListener("click", (e) => {
             const changeForm = new FormSwitcher(e);
-            changeForm.switchFormInputs();
+            changeForm.changeInputIds();
+            changeForm.createPasswordEl();
             changeForm.changeBtn();
         })
     })
@@ -33,7 +33,7 @@ class FormSwitcher {
         this.formState = formState.target.id;
     }
     
-    switchFormInputs() {
+    createPasswordEl() {
         const passwordElementExist = document.getElementById("password2");
         
         if (this.formState === "signup" && !passwordElementExist) {
@@ -63,6 +63,20 @@ class FormSwitcher {
         const btnForm = document.getElementById("btn-confirm");
 
         this.formState === "login" ? btnForm.textContent = "Login" : btnForm.textContent = "Register";
-        
+    }
+
+    changeInputIds() {
+
+        const [emailLogin, passwordLogin] = multiSelect(["#email-login", "#password-login"]);
+        if (emailLogin) {
+            emailLogin.id = "email-reg";
+            passwordLogin.id = "password-reg";
+            return
+        }
+
+        const [emailReg, passwordReg] = multiSelect(["#email-reg", "#password-reg"]);
+        emailReg.id = "email-login";
+        passwordReg.id = "password-login";
+
     }
 }

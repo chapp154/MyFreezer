@@ -1,11 +1,11 @@
 import {multiSelect} from "../tools/multiple-selector";
 
-export let [email, password1, password2, validationMsg] = multiSelect(["#email", "#password1", "#password2", ".login__body-validation"]);
+let [email, password, password2, validationMsg] = multiSelect(["#email-reg", "#password-reg", "#password2", ".login__body-validation"]);
 
 
 const validationText = (type, input, inputEl) => {
     switch (type) {
-        case "email":
+        case "email-reg":
             if (input.includes("@") && !input.includes(" ")) {
                 let splitInput = input.split("@");
         
@@ -20,7 +20,7 @@ const validationText = (type, input, inputEl) => {
                 }
             }
         break;
-        case "password1":
+        case "password-reg":
     }
     
     console.log("woof")
@@ -31,6 +31,8 @@ const validationText = (type, input, inputEl) => {
 
 const validationUI = (currInput) => {
 
+    if (!currInput) return
+    
     currInput.addEventListener("focus", (e) => {
 
         if (validationMsg) validationMsg.remove();
@@ -44,4 +46,4 @@ const validationUI = (currInput) => {
     })
 }
 
-export const getValidations = () => {validationUI(email); validationUI(password1)};
+export const getValidations = () => {validationUI(email); validationUI(password)};
