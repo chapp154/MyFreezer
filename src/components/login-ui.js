@@ -37,7 +37,7 @@ class FormSwitcher {
         const passwordElementExist = document.getElementById("password2");
         
         if (this.formState === "signup" && !passwordElementExist) {
-";
+
             const passwordInput = document.getElementById("password1");
 
             const newPasswordInput = passwordInput.cloneNode(false);
@@ -49,7 +49,7 @@ class FormSwitcher {
 
             return 
         }
-        if (this.formState === "login" && passwordElementExist)"; {
+        if (this.formState === "login" && passwordElementExist) {
 
             passwordElementExist.classList.add("animation__slideClose--fast")
 
@@ -65,6 +65,18 @@ class FormSwitcher {
         this.formState === "login" ? btnForm.textContent = "Login" : btnForm.textContent = "Register";
     }
 
+    changeInputIds() {
+
+        const [emailLogin, passwordLogin] = multiSelect(["#email-login", "#password-login"]);
+        if (emailLogin) {
+            emailLogin.id = "email-reg";
+            passwordLogin.id = "password-reg";
+            return
+        }
+
+        const [emailReg, passwordReg] = multiSelect(["#email-reg", "#password-reg"]);
+        emailReg.id = "email-login";
+        passwordReg.id = "password-login";
 
     }
 }
