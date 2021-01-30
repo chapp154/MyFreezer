@@ -1,6 +1,5 @@
 import {multiSelect} from "../tools/multiple-selector";
 
-let [email, password, passwordCheck, validationMsg] = multiSelect(["#email-reg", "#password-reg", "#password-reg-check", ".login__body-validation"]);
 
 
 const validationText = (type, input, inputEl) => {
@@ -23,21 +22,23 @@ const validationText = (type, input, inputEl) => {
         case "password-reg":
     }
     
-    console.log("woof")
 
     inputEl.style.color = "";
     return "Email is not valid";
 }
 
-const validationUI = (currInput) => {
+const validationUI = (currInput, formType) => {
 
-    const test = document.getElementById("email-reg");
+    if (formType === "login") {
+        const validationMsg = document.querySelector(".login__body-validation");
+        if (validationMsg) validationMsg.remove();
+        currInput.removeEventListener("focus");
+        return;
+    }
 
-    console.log(test);
-
-    if (!currInput) return
-    
     currInput.addEventListener("focus", (e) => {
+
+        let validationMsg = document.querySelector(".login__body-validation");
 
         if (validationMsg) validationMsg.remove();
         
@@ -50,4 +51,24 @@ const validationUI = (currInput) => {
     })
 }
 
-export const getValidations = () => {validationUI(email); validationUI(password)};
+const getFormElIds = () => {
+
+    return new Promise((resolve, reject) => {
+
+        let [email, password, passwordCheck] = multiSelect(["#email-reg", "#password-reg", "#password-reg-check"]);
+        resolve ({email, password, passwordCheck});
+    })
+}
+
+export const getValidations = async(formType) => {
+
+    try {
+        const regFormElements = await getFormElIds();
+
+        validationUI(regFormElements.email, formType);
+        validationUI(regFormElements.password, formType)
+    } catch (error) {
+        console.log(`Something is wrong with the promise ${error}`);
+    }
+
+};

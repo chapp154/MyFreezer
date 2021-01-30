@@ -32,11 +32,10 @@ export const getFormOption = () => {
             formOption.createPasswordEl();
             formOption.changeBtn();
 
-            if (!changeStateMemory.includes("signup") && formOption.formState === "signup") {
-                formOption.runValidation();
-            }     
+            getValidations(formOption.formState);
             
-            changeStateMemory.push(formOption.formState);
+            changeStateMemory = [...changeStateMemory, formOption.formState];
+
 
     
         })
@@ -83,7 +82,7 @@ class FormSwitcher {
 
     changeInputIds(type) {
 
-        const [email, password] = multiSelect([".login__body input:nth-child(1)", ".login__body input:nth-child(2)"]);
+        const [email, password] = document.getElementsByClassName("login-input");
 
         if (type === "login") {
             email.id = "email-login";
@@ -96,11 +95,7 @@ class FormSwitcher {
 
     }
 
-    formStateMemory(currState) {
+    removeValidation(state) {
 
-    }
-
-    runValidation() {
-        getValidations();
     }
 }
