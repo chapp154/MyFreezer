@@ -19,20 +19,27 @@ export const changeLabelContent = (e, contentToReplace = "Login") => {
 }
 
 export const getFormOption = () => {
-    document.getElementById("login").addEventListener("click", (e) => {
 
-        const changeForm = new FormSwitcher(e);
-        changeForm.changeInputIds(changeForm.formState);
-        changeForm.changeBtn();
+    let changeStateMemory = [];
 
-    })
+    document.querySelectorAll(".login__options input").forEach(option => {
 
-    document.getElementById("signup").addEventListener("click", (e) => {
+        option.addEventListener("click", (e) => {
 
-        const changeForm = new FormSwitcher(e);
-        changeForm.changeInputIds(changeForm.formState);
-        changeForm.changeBtn();
+            const formOption = new FormSwitcher(e);
 
+            formOption.changeInputIds(formOption.formState);
+            formOption.createPasswordEl();
+            formOption.changeBtn();
+
+            if (!changeStateMemory.includes("signup") && formOption.formState === "signup") {
+                formOption.runValidation();
+            }     
+            
+            changeStateMemory.push(formOption.formState);
+
+    
+        })
     })
 }
 
@@ -68,25 +75,28 @@ class FormSwitcher {
     }
 
     changeBtn() {
+
         const btnForm = document.getElementById("btn-confirm");
 
         this.formState === "login" ? btnForm.textContent = "Login" : btnForm.textContent = "Register";
     }
 
     changeInputIds(type) {
-        console.log("kwak");
-        const [emailLogin, passwordLogin] = multiSelect(["#email-login", "#password-login"]);
-        if (emailLogin && type !== "login") {
-            emailLogin.id = "email-reg";
-            passwordLogin.id = "password-reg";
+
+        const [email, password] = multiSelect([".login__body input:nth-child(1)", ".login__body input:nth-child(2)"]);
+
+        if (type === "login") {
+            email.id = "email-login";
+            password.id = "password-login";
             return
         }
 
-        const [emailReg, passwordReg] = multiSelect(["#email-reg", "#password-reg"]);
-        if (emailReg && type !== "signup") {
-            emailReg.id = "email-login";
-            passwordReg.id = "password-login";
-        }
+        email.id = "email-reg";
+        password.id = "password-reg";
+
+    }
+
+    formStateMemory(currState) {
 
     }
 

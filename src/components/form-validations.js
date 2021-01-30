@@ -31,6 +31,9 @@ const validationText = (type, input, inputEl) => {
 
 const validationUI = (currInput) => {
 
+    const test = document.getElementById("email-reg");
+
+    console.log(test);
 
     if (!currInput) return
     
