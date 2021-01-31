@@ -22,7 +22,7 @@ export const getFormOption = () => {
 
     let changeStateMemory = [];
 
-    document.querySelectorAll(".login__options input").forEach(option => {
+    document.querySelectorAll(".login__options input").forEach((option, index) => {
 
         option.addEventListener("click", (e) => {
 
@@ -31,8 +31,8 @@ export const getFormOption = () => {
             formOption.changeInputIds(formOption.formState);
             formOption.createPasswordEl();
             formOption.changeBtn();
-
             getValidations(formOption.formState);
+
             
             changeStateMemory = [...changeStateMemory, formOption.formState];
 
@@ -48,14 +48,14 @@ class FormSwitcher {
     }
     
     createPasswordEl() {
-        const passwordElementExist = document.getElementById("password-reg-check");
+        const passwordElementExist = document.getElementById("password-signup-check");
         
         if (this.formState === "signup" && !passwordElementExist) {
 
-            const passwordInput = document.getElementById("password-reg");
+            const passwordInput = document.getElementById("password%signup");
 
             const newPasswordInput = passwordInput.cloneNode(false);
-            newPasswordInput.id = "password-reg-check";
+            newPasswordInput.id = "password-signup-check";
             newPasswordInput.setAttribute("placeholder", "Password again");
             newPasswordInput.classList.add("animation__slideOpen--fast");
     
@@ -82,20 +82,14 @@ class FormSwitcher {
 
     changeInputIds(type) {
 
-        const [email, password] = document.getElementsByClassName("login-input");
+        const [email, password] = document.getElementsByClassName("form-input");
 
-        if (type === "login") {
-            email.id = "email-login";
-            password.id = "password-login";
-            return
-        }
-
-        email.id = "email-reg";
-        password.id = "password-reg";
+        email.id = `email%${type}`;
+        password.id = `password%${type}`;
 
     }
 
-    removeValidation(state) {
-
+    removeValidation() {
+        const elementEvent = document.querySelector("#email\\%signup");
     }
 }

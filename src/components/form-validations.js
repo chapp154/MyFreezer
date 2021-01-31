@@ -1,5 +1,6 @@
 import {multiSelect} from "../tools/multiple-selector";
 
+let [email, password] = document.getElementsByClassName("form-input");
 
 
 const validationText = (type, input, inputEl) => {
@@ -29,14 +30,7 @@ const validationText = (type, input, inputEl) => {
 
 const validationUI = (currInput, formType) => {
 
-    if (formType === "login") {
-        const validationMsg = document.querySelector(".login__body-validation");
-        if (validationMsg) validationMsg.remove();
-        currInput.removeEventListener("focus");
-        return;
-    }
-
-    currInput.addEventListener("focus", (e) => {
+    const activateValidation = (e) => {
 
         let validationMsg = document.querySelector(".login__body-validation");
 
@@ -48,27 +42,31 @@ const validationUI = (currInput, formType) => {
         validationMsg.innerHTML = validationText(currInput.id, e.target.value, e.target);
 
         currInput.addEventListener('input', (e) => validationMsg.innerHTML = validationText(currInput.id, e.target.value, e.target));
-    })
+    }
+
+    if (formType === "login") {
+
+        const validationMsg = document.querySelector(".login__body-validation");
+        if (validationMsg) validationMsg.remove();
+
+        currInput.removeEventListener("focus", activateValidation, true);
+        console.log("should remove" , currInput);
+        return;
+    }
+    currInput.addEventListener("focus", activateValidation, true);
+
+    console.log("should add", currInput);
+
 }
 
-const getFormElIds = () => {
-
-    return new Promise((resolve, reject) => {
-
-        let [email, password, passwordCheck] = multiSelect(["#email-reg", "#password-reg", "#password-reg-check"]);
-        resolve ({email, password, passwordCheck});
-    })
-}
-
-export const getValidations = async(formType) => {
+export const getValidations = (formType) => {
 
     try {
-        const regFormElements = await getFormElIds();
 
-        validationUI(regFormElements.email, formType);
-        validationUI(regFormElements.password, formType)
+        validationUI(email, formType);
+       // validationUI(password, formType)
     } catch (error) {
-        console.log(`Something is wrong with the promise ${error}`);
+        console.log(error);
     }
 
 };
