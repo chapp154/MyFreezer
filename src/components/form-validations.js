@@ -30,7 +30,7 @@ const validationText = (type, input, inputEl) => {
 
 const validationUI = (currInput, formType) => {
 
-    const activateValidation = (e) => {
+    const runValidation = (e) => {
 
         let validationMsg = document.querySelector(".login__body-validation");
 
@@ -49,11 +49,11 @@ const validationUI = (currInput, formType) => {
         const validationMsg = document.querySelector(".login__body-validation");
         if (validationMsg) validationMsg.remove();
 
-        currInput.removeEventListener("focus", activateValidation, true);
+        currInput.removeEventListener("focus", runValidation, true);
         console.log("should remove" , currInput);
         return;
     }
-    currInput.addEventListener("focus", activateValidation, true);
+    currInput.addEventListener("focus", runValidation, true);
 
     console.log("should add", currInput);
 
