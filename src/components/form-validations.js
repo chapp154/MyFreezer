@@ -23,51 +23,48 @@ const validationText = (type, input, inputEl) => {
         case "password-reg":
     }
     
-
     inputEl.style.color = "";
     return "Email is not valid";
 }
 
-const runValidation = (e) => {
+let validation = {
 
-    let validationMsg = document.querySelector(".login__body-validation");
+    currInput: "",
 
-    if (validationMsg) validationMsg.remove();
-    
-    validationMsg = document.createElement("p");
-    validationMsg.classList.add("login__body-validation");
-    e.target.insertAdjacentElement("afterend", validationMsg);
+    runFocusEvent: function (e) {
 
-    currInput.addEventListener('input', (e) => validationMsg.innerHTML = validationText(currInput.id, e.target.value, e.target));
-}
+        let validationMsg = document.querySelector(".login__body-validation");
 
-const validationUI = (currInput, formType) => {
-
-
-
-    if (formType === "login") {
-
-        const validationMsg = document.querySelector(".login__body-validation");
         if (validationMsg) validationMsg.remove();
 
-        currInput.removeEventListener("focus", runValidation, true);
-        console.log("should remove" , currInput);
-        return;
-    }
-    currInput.addEventListener("focus", runValidation, true);
+        validationMsg = document.createElement("p");
+        validationMsg.classList.add("login__body-validation");
+        e.target.insertAdjacentElement("afterend", validationMsg);
 
-    console.log("should add", currInput);
+        validation.currInput.addEventListener('input', (e) => validationMsg.innerHTML = validationText(validation.currInput.id, e.target.value, e.target));
+    },
+
+    ui: function (currInput, formType) {
+
+        this.currInput = currInput;
+
+        if (formType === "login") {
+
+            const validationMsg = document.querySelector(".login__body-validation");
+            if (validationMsg) validationMsg.remove();
+
+            currInput.removeEventListener("focus", this.runFocusEvent, true);
+            return;
+        }
+        currInput.addEventListener("focus", this.runFocusEvent, true);
+    }
+
 
 }
 
 export const getValidations = (formType) => {
 
-    try {
-
-        validationUI(email, formType);
-       // validationUI(password, formType)
-    } catch (error) {
-        console.log(error);
-    }
+    validation.ui(email, formType);
+    //validationUI(password, formType)
 
 };

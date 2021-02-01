@@ -18,7 +18,7 @@ export const changeLabelContent = (e, contentToReplace = "Login") => {
     loginBtn.setAttribute("data-after", contentToReplace);
 }
 
-export const getFormOption = () => {
+export const getFormSelection = () => {
 
     let changeStateMemory = [];
 
@@ -26,14 +26,14 @@ export const getFormOption = () => {
 
         option.addEventListener("click", (e) => {
 
-            const formOption = new FormSwitcher(e);
+            const formSelection = new FormSelector(e);
 
-            formOption.changeInputIds(formOption.formState);
-            formOption.createPasswordEl();
-            formOption.changeBtn();
-            getValidations(formOption.formState);
+            formSelection.changeInputIds(formSelection.state);
+            formSelection.createPasswordEl();
+            formSelection.changeBtn();
+            getValidations(formSelection.state);
 
-            changeStateMemory = [...changeStateMemory, formOption.formState];
+            changeStateMemory = [...changeStateMemory, formSelection.state];
 
 
     
@@ -41,15 +41,15 @@ export const getFormOption = () => {
     })
 }
 
-class FormSwitcher {
-    constructor(formState) {
-        this.formState = formState.target.id;
+class FormSelector {
+    constructor(state) {
+        this.state = state.target.id;
     }
     
     createPasswordEl() {
         const passwordElementExist = document.getElementById("password-signup-check");
         
-        if (this.formState === "signup" && !passwordElementExist) {
+        if (this.state === "signup" && !passwordElementExist) {
 
             const passwordInput = document.getElementById("password%signup");
 
@@ -62,7 +62,7 @@ class FormSwitcher {
 
             return 
         }
-        if (this.formState === "login" && passwordElementExist) {
+        if (this.state === "login" && passwordElementExist) {
 
             passwordElementExist.classList.add("animation__slideClose--fast")
 
@@ -73,14 +73,23 @@ class FormSwitcher {
     }
 
     changeBtn() {
+        const btnForm = document.querySelector(".btn-form-submit");
 
-        const btnForm = document.getElementById("btn-confirm");
+        const btnSet = (text, id) => {
+            btnForm.textContent = text;
+            btnForm.id = id;
+        }
 
-        this.formState === "login" ? btnForm.textContent = "Login" : btnForm.textContent = "Register";
+        if (this.state === "login") {
+            btnSet("Login", "login");
+            return;
+        }
+
+        btnSet("Register", "signup");
+
     }
 
     changeInputIds(type) {
-
         const [email, password] = document.getElementsByClassName("form-input");
 
         email.id = `email%${type}`;
