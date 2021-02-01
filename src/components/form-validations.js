@@ -28,21 +28,22 @@ const validationText = (type, input, inputEl) => {
     return "Email is not valid";
 }
 
+const runValidation = (e) => {
+
+    let validationMsg = document.querySelector(".login__body-validation");
+
+    if (validationMsg) validationMsg.remove();
+    
+    validationMsg = document.createElement("p");
+    validationMsg.classList.add("login__body-validation");
+    e.target.insertAdjacentElement("afterend", validationMsg);
+
+    currInput.addEventListener('input', (e) => validationMsg.innerHTML = validationText(currInput.id, e.target.value, e.target));
+}
+
 const validationUI = (currInput, formType) => {
 
-    const runValidation = (e) => {
 
-        let validationMsg = document.querySelector(".login__body-validation");
-
-        if (validationMsg) validationMsg.remove();
-        
-        validationMsg = document.createElement("p");
-        validationMsg.classList.add("login__body-validation");
-        e.target.insertAdjacentElement("afterend", validationMsg);
-        validationMsg.innerHTML = validationText(currInput.id, e.target.value, e.target);
-
-        currInput.addEventListener('input', (e) => validationMsg.innerHTML = validationText(currInput.id, e.target.value, e.target));
-    }
 
     if (formType === "login") {
 

@@ -33,7 +33,6 @@ export const getFormOption = () => {
             formOption.changeBtn();
             getValidations(formOption.formState);
 
-            
             changeStateMemory = [...changeStateMemory, formOption.formState];
 
 
@@ -87,9 +86,5 @@ class FormSwitcher {
         email.id = `email%${type}`;
         password.id = `password%${type}`;
 
-    }
-
-    removeValidation() {
-        const elementEvent = document.querySelector("#email\\%signup");
     }
 }
