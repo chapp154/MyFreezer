@@ -2,9 +2,6 @@ import {multiSelect} from "../tools/multiple-selector";
 
 let [email, password] = document.getElementsByClassName("form-input");
 
-
-const validationText = 
-
 let validation = {
 
     currInput: "",
