@@ -1,7 +1,5 @@
 import {multiSelect} from "../tools/multiple-selector";
 
-let [email, password] = document.getElementsByClassName("form-input");
-
 let validation = {
 
     currInput: "",
@@ -12,7 +10,7 @@ let validation = {
 
     messageBody: function (type, input, inputEl) {
         switch (type) {
-            case "email-reg":
+            case "email%signup":
                 if (input.includes("@") && !input.includes(" ")) {
                     let splitInput = input.split("@");
             
@@ -26,12 +24,13 @@ let validation = {
                         } 
                     }
                 }
+                return "Email is not valid";
             break;
-            case "password-reg":
+            
+            case "password%signup":
         }
         
         inputEl.style.color = "";
-        return "Email is not valid";
     },
 
     runFocusEvent: function (e) {
@@ -42,7 +41,7 @@ let validation = {
         validation.msgEl.classList.add("login__body-validation");
         e.target.insertAdjacentElement("afterend", validation.msgEl);
 
-        validation.currInput.addEventListener('input', (e) => validation.msgEl.innerHTML = validationText(validation.currInput.id, e.target.value, e.target));
+        validation.currInput.addEventListener('input', (e) => validation.msgEl.innerHTML = validation.messageBody(validation.currInput.id, e.target.value, e.target));
     },
 
     ui: function (currInput, formType) {
@@ -64,6 +63,8 @@ let validation = {
 }
 
 export const getValidations = (formType) => {
+
+    let [email, password] = document.getElementsByClassName("form-input");
 
     validation.ui(email, formType);
     //validationUI(password, formType)
