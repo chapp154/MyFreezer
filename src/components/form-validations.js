@@ -28,6 +28,17 @@ let validation = {
             break;
             
             case "password%signup":
+                if (input.length >= 4) {
+                    return "OK";
+                }
+                return "not OK";
+            break;
+
+            case "password-signup-check":
+                if (input === this.currInputEls[1].value && input.length >= 4) {
+                    return "OK";
+                }
+                return "Try match";
         }
         
         inputEl.style.color = "";
@@ -47,16 +58,10 @@ let validation = {
     },
 
     ui: function (currInputEls, formType) {
-
-        currInputEls.forEach(el => {
-            this.currInputEls = [...this.currInputEls, el];
-
-            console.log(this.currInputEls);
-
+        currInputEls.forEach((el, index) => {
+            this.currInputEls.splice(index, 1, el);
             if (formType === "login") {
-    
                 this.removeMsgEl();
-    
                 el.removeEventListener("focus", this.runFocusEvent, true);
                 return;
             }
@@ -72,9 +77,9 @@ let validation = {
 
 export const getValidations = (formType) => {
 
-    let [email, password] = document.getElementsByClassName("form-input");
+    let [email, password, passwordCheck] = document.getElementsByClassName("form-input");
 
-    validation.ui([email, password], formType);
+    validation.ui([email, password, passwordCheck], formType);
     //validationUI(password, formType)
 
 };
