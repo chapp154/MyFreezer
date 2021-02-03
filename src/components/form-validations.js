@@ -2,7 +2,7 @@ import {multiSelect} from "../tools/multiple-selector";
 
 let validation = {
 
-    currInput: "",
+    currInputEls: [],
 
     msgEl: document.querySelector(".login__body-validation"),
 
@@ -11,7 +11,7 @@ let validation = {
     messageBody: function (type, input, inputEl) {
         switch (type) {
             case "email%signup":
-                if (input.includes("@") && !input.includes(" ")) {
+                if (input.includes("@") && !input.includes(" ") && !input.includes(",")) {
                     let splitInput = input.split("@");
             
                     if (splitInput[0].length > 0 && splitInput[1].includes(".")) {
@@ -33,30 +33,38 @@ let validation = {
         inputEl.style.color = "";
     },
 
-    runFocusEvent: function (e) {
+    runFocusEvent: function (eventFocus) {
 
         validation.removeMsgEl();
 
         validation.msgEl = document.createElement("p");
         validation.msgEl.classList.add("login__body-validation");
-        e.target.insertAdjacentElement("afterend", validation.msgEl);
+        eventFocus.target.insertAdjacentElement("afterend", validation.msgEl);
 
-        validation.currInput.addEventListener('input', (e) => validation.msgEl.innerHTML = validation.messageBody(validation.currInput.id, e.target.value, e.target));
+        validation.currInputEls.forEach(el => {
+            el.addEventListener('input', (eventInput) => validation.msgEl.innerHTML = validation.messageBody(el.id, eventInput.target.value, eventInput.target));
+        })
     },
 
-    ui: function (currInput, formType) {
+    ui: function (currInputEls, formType) {
 
-        this.currInput = currInput;
+        currInputEls.forEach(el => {
+            this.currInputEls = [...this.currInputEls, el];
 
-        if (formType === "login") {
+            console.log(this.currInputEls);
 
-            this.removeMsgEl();
+            if (formType === "login") {
+    
+                this.removeMsgEl();
+    
+                el.removeEventListener("focus", this.runFocusEvent, true);
+                return;
+            }
+    
+            el.addEventListener("focus", this.runFocusEvent, true);
+        })
 
-            currInput.removeEventListener("focus", this.runFocusEvent, true);
-            return;
-        }
 
-        currInput.addEventListener("focus", this.runFocusEvent, true);
     }
 
 
@@ -66,7 +74,7 @@ export const getValidations = (formType) => {
 
     let [email, password] = document.getElementsByClassName("form-input");
 
-    validation.ui(email, formType);
+    validation.ui([email, password], formType);
     //validationUI(password, formType)
 
 };
