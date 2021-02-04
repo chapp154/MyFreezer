@@ -6,7 +6,14 @@ let validation = {
 
     msgEl: document.querySelector(".login__body-validation"),
 
-    removeMsgEl: function () {if (this.msgEl) this.msgEl.remove()},
+    removeMsgEl: function (eventFocus) {
+
+        const hasMsg = document.querySelector(`#${eventFocus.target.id}`);
+        if (hasMsg) {
+
+            console.log(hasMsg);
+        }
+    },
 
     messageBody: function (type, input, inputEl) {
         switch (type) {
@@ -46,7 +53,7 @@ let validation = {
 
     runFocusEvent: function (eventFocus) {
 
-        validation.removeMsgEl();
+        validation.removeMsgEl(eventFocus);
 
         validation.msgEl = document.createElement("p");
         validation.msgEl.classList.add("login__body-validation");
@@ -61,7 +68,7 @@ let validation = {
         currInputEls.forEach((el, index) => {
             this.currInputEls.splice(index, 1, el);
             if (formType === "login") {
-                this.removeMsgEl();
+                this.removeMsgEl(eventFocus);
                 el.removeEventListener("focus", this.runFocusEvent, true);
                 return;
             }

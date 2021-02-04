@@ -90,10 +90,12 @@ class FormSelector {
     }
 
     changeInputIds(type) {
-        const [email, password] = document.getElementsByClassName("form-input");
+        const [email, password, passwordCheck] = document.getElementsByClassName("form-input");
 
         email.id = `email%${type}`;
         password.id = `password%${type}`;
+
+        [email, password, passwordCheck].forEach(el => {if (el) el.value = ""});
 
     }
 }
