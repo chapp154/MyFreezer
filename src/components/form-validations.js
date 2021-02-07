@@ -4,20 +4,25 @@ let validation = {
 
     currInputEls: [],
 
-    msgEl: document.querySelector(".login__body-validation"),
+    msgEl: "",
 
-    removeMsgEl: function (eventFocus) {
+    useMsgEl: function (eventFocus) {
 
-        const hasMsg = document.querySelector(`#${eventFocus.target.id}`);
-        if (hasMsg) {
-
-            console.log(hasMsg);
+        if (!eventFocus) {
+            const allMsgs = document.querySelectorAll(".login__body-validation");
+            allMsgs.forEach(msg => msg.remove());
+            return;
         }
+
+        const validationPara = document.querySelector(`#${eventFocus.target.id} + p`);
+        if (validationPara) {return [true, validationPara]};
+
+        return [false, validationPara];
     },
 
     messageBody: function (type, input, inputEl) {
         switch (type) {
-            case "email%signup":
+            case "email000signup":
                 if (input.includes("@") && !input.includes(" ") && !input.includes(",")) {
                     let splitInput = input.split("@");
             
@@ -34,7 +39,7 @@ let validation = {
                 return "Email is not valid";
             break;
             
-            case "password%signup":
+            case "password000signup":
                 if (input.length >= 4) {
                     return "OK";
                 }
@@ -53,11 +58,14 @@ let validation = {
 
     runFocusEvent: function (eventFocus) {
 
-        validation.removeMsgEl(eventFocus);
+        validation.useMsgEl(eventFocus);
 
-        validation.msgEl = document.createElement("p");
-        validation.msgEl.classList.add("login__body-validation");
-        eventFocus.target.insertAdjacentElement("afterend", validation.msgEl);
+        if (!validation.useMsgEl(eventFocus)[0]) {
+            validation.msgEl = document.createElement("p");
+            validation.msgEl.classList.add("login__body-validation");
+            eventFocus.target.insertAdjacentElement("afterend", validation.msgEl);
+            
+        } else {validation.msgEl = validation.useMsgEl(eventFocus)[1]};
 
         validation.currInputEls.forEach(el => {
             el.addEventListener('input', (eventInput) => validation.msgEl.innerHTML = validation.messageBody(el.id, eventInput.target.value, eventInput.target));
@@ -68,7 +76,7 @@ let validation = {
         currInputEls.forEach((el, index) => {
             this.currInputEls.splice(index, 1, el);
             if (formType === "login") {
-                this.removeMsgEl(eventFocus);
+                this.useMsgEl();
                 el.removeEventListener("focus", this.runFocusEvent, true);
                 return;
             }

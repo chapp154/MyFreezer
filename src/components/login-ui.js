@@ -34,8 +34,6 @@ export const getFormSelection = () => {
             getValidations(formSelection.state);
 
             changeStateMemory = [...changeStateMemory, formSelection.state];
-
-
     
         })
     })
@@ -51,7 +49,7 @@ class FormSelector {
         
         if (this.state === "signup" && !passwordElementExist) {
 
-            const passwordInput = document.getElementById("password%signup");
+            const passwordInput = document.getElementById("password000signup");
 
             const newPasswordInput = passwordInput.cloneNode(false);
             newPasswordInput.id = "password-signup-check";
@@ -92,8 +90,8 @@ class FormSelector {
     changeInputIds(type) {
         const [email, password, passwordCheck] = document.getElementsByClassName("form-input");
 
-        email.id = `email%${type}`;
-        password.id = `password%${type}`;
+        email.id = `email000${type}`;
+        password.id = `password000${type}`;
 
         [email, password, passwordCheck].forEach(el => {if (el) el.value = ""});
 
