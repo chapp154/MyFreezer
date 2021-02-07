@@ -23,7 +23,9 @@ let validation = {
     messageBody: function (type, input, inputEl) {
         switch (type) {
             case "email000signup":
-                if (input.includes("@") && !input.includes(" ") && !input.includes(",")) {
+                const emailRegex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|cz|sk|pl|eu|au|us|gb|io|de|sl|hu|sp|museum)\b/;
+
+                if (emailRegex.test(input)) {
                     let splitInput = input.split("@");
             
                     if (splitInput[0].length > 0 && splitInput[1].includes(".")) {
@@ -32,10 +34,12 @@ let validation = {
                         if (splitInput[0].length > 0 && splitInput[1].length > 0) {
                             
                             inputEl.style.color = "rgba(91, 179, 101, 1)";
+
                             return "Good";
                         } 
                     }
                 }
+                inputEl.style.color = "";
                 return "Email is not valid";
             break;
             
@@ -64,7 +68,7 @@ let validation = {
             validation.msgEl = document.createElement("p");
             validation.msgEl.classList.add("login__body-validation");
             eventFocus.target.insertAdjacentElement("afterend", validation.msgEl);
-            
+
         } else {validation.msgEl = validation.useMsgEl(eventFocus)[1]};
 
         validation.currInputEls.forEach(el => {
