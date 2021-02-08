@@ -6,6 +6,11 @@ let validation = {
 
     msgEl: "",
 
+    icons: {
+        valid: '<i class="fas fa-check-circle signup-validation signup-validation__valid"></i>',
+        invalid: '<i class="fas fa-times-circle signup-validation signup-validation__invalid"></i>',
+    },
+
     useMsgEl: function (eventFocus) {
 
         if (!eventFocus) {
@@ -31,42 +36,37 @@ let validation = {
                     if (splitInput[0].length > 0 && splitInput[1].includes(".")) {
                         splitInput = splitInput[1].split(".") 
             
-                        if (splitInput[0].length > 0 && splitInput[1].length > 0) {
-                            
-                            inputEl.style.color = "rgba(91, 179, 101, 1)";
+                        if (splitInput[0].length > 0 && splitInput[1].length > 0) {  
 
-                            return "Good";
+                            return this.icons.valid;
                         } 
                     }
                 }
-                inputEl.style.color = "";
-                return "Email is not valid";
+                return this.icons.invalid;
             break;
             
             case "password000signup":
                 const pswCheckEl = document.querySelector(`#${this.currInputEls[2].id} + p`);
 
                 if (pswCheckEl && this.currInputEls[2].value !== input) {
-                    pswCheckEl.textContent = "Try match";
+                    pswCheckEl.innerHTML = this.icons.invalid;
                 } else if (pswCheckEl) {
-                    pswCheckEl.textContent = "OK"
-                };
+                    pswCheckEl.innerHTML = this.icons.valid;
+                }
 
                 if (input.length >= 4) {
-                    return "OK";
+                    return this.icons.valid;
                 }
-                return "not OK";
+                return this.icons.invalid;
             break;
 
             case "password-signup-check":
                 if (input === this.currInputEls[1].value && input.length >= 4) {
-                    return "OK";
+                    return this.icons.valid;
                 }
-                return "Try match";
+                return this.icons.invalid;
         }
-        
-        inputEl.style.color = "";
-    },
+            },
 
     runFocusEvent: function (eventFocus) {
 

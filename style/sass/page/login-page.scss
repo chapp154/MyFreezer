@@ -100,8 +100,6 @@
             transition: all .1s;
             border: none;
 
-
-
             &:hover {
                 background: darken($color-blue-2, 2);
                 box-shadow: 0 .5rem 1rem rgba($color: #000000, $alpha: .3);
@@ -115,7 +113,7 @@
 
         &-validation {
             position: absolute;
-            transform: translate(calc(100% + 2rem), -3.5rem);
+            transform: translate(calc(100% + 2rem), -3.6rem);
             z-index: 100;
             right: 0;
 
