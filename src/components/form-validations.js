@@ -11,6 +11,14 @@ let validation = {
         invalid: '<i class="fas fa-times-circle signup-validation signup-validation__invalid"></i>',
     },
 
+    check: {
+        values: [],
+        result: function() {
+
+        },
+
+    },
+
     useMsgEl: function (eventFocus) {
 
         if (!eventFocus) {
