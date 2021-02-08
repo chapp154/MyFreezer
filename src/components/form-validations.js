@@ -44,6 +44,14 @@ let validation = {
             break;
             
             case "password000signup":
+                const pswCheckEl = document.querySelector(`#${this.currInputEls[2].id} + p`);
+
+                if (pswCheckEl && this.currInputEls[2].value !== input) {
+                    pswCheckEl.textContent = "Try match";
+                } else if (pswCheckEl) {
+                    pswCheckEl.textContent = "OK"
+                };
+
                 if (input.length >= 4) {
                     return "OK";
                 }
