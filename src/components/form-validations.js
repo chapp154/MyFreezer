@@ -47,37 +47,40 @@ let validation = {
                         if (splitInput[0].length > 0 && splitInput[1].length > 0) {  
 
                             this.check.values.splice(0, 1, true);
-                            console.log(this.check.values);
-
                             return this.icons.valid;
                         } 
                     }
                 }
+                this.check.values.splice(0, 1, false);
                 return this.icons.invalid;
             break;
             
             case "password000signup":
-                const pswCheckEl = document.querySelector(`#${this.currInputEls[2].id} + p`);
+                const paraCheckEl = document.querySelector(`#${this.currInputEls[2].id} + p`);
 
-                if (pswCheckEl && this.currInputEls[2].value !== input) {
-                    pswCheckEl.innerHTML = this.icons.invalid;
-                } else if (pswCheckEl) {
-                    pswCheckEl.innerHTML = this.icons.valid;
+                if (paraCheckEl && this.currInputEls[2].value !== input) {
+                    paraCheckEl.innerHTML = this.icons.invalid;
+                } else if (paraCheckEl) {
+                    paraCheckEl.innerHTML = this.icons.valid;
                 }
 
                 if (input.length >= 4) {
+                    this.check.values.splice(1, 1, true);
                     return this.icons.valid;
                 }
+                this.check.values.splice(1, 1, false);
                 return this.icons.invalid;
             break;
 
             case "password-signup-check":
                 if (input === this.currInputEls[1].value && input.length >= 4) {
+                    this.check.values.splice(2, 1, true);
                     return this.icons.valid;
                 }
+                this.check.values.splice(2, 1, false);
                 return this.icons.invalid;
         }
-            },
+    },
 
     runFocusEvent: function (eventFocus) {
 
