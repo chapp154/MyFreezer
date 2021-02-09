@@ -12,7 +12,7 @@ let validation = {
     },
 
     check: {
-        values: [],
+        values: [false, false, false],
         result: function() {
 
         },
@@ -45,6 +45,9 @@ let validation = {
                         splitInput = splitInput[1].split(".") 
             
                         if (splitInput[0].length > 0 && splitInput[1].length > 0) {  
+
+                            this.check.values.splice(0, 1, true);
+                            console.log(this.check.values);
 
                             return this.icons.valid;
                         } 
