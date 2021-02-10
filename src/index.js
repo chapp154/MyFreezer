@@ -6,3 +6,6 @@ import '@fortawesome/fontawesome-free/js/all';
 
 
 loginInit();
+
+const test = "chrooo"; 
+console.log(test);

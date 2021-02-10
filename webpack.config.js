@@ -7,7 +7,7 @@ module.exports = {
     devtool: false,
     entry: "./src/index.js",
     output: {
-        filename: "main-[contenthash].js",
+        filename: "main.js", // add before distro: -[contenthash]
         path: path.resolve(__dirname, "dist")
     },
     plugins: [

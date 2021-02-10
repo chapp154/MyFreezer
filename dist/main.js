@@ -10,7 +10,7 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 /* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
@@ -4529,15 +4529,15 @@ module.exports = function (cssWithMappingToString) {
       }
 
       return content;
-    }).join('');
+    }).join("");
   }; // import a list of modules into the list
   // eslint-disable-next-line func-names
 
 
   list.i = function (modules, mediaQuery, dedupe) {
-    if (typeof modules === 'string') {
+    if (typeof modules === "string") {
       // eslint-disable-next-line no-param-reassign
-      modules = [[null, modules, '']];
+      modules = [[null, modules, ""]];
     }
 
     var alreadyImportedModules = {};
@@ -4866,7 +4866,7 @@ module.exports = function (list, options) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "loginInit": () => /* binding */ loginInit
+/* harmony export */   "loginInit": () => (/* binding */ loginInit)
 /* harmony export */ });
 /* harmony import */ var _components_login_ui__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/login-ui */ "./src/components/login-ui.js");
 /* harmony import */ var _components_form_validations__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/form-validations */ "./src/components/form-validations.js");
@@ -4899,8 +4899,8 @@ const getSignup = () => {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "getValidations": () => /* binding */ getValidations,
-/* harmony export */   "validateForm": () => /* binding */ validateForm
+/* harmony export */   "getValidations": () => (/* binding */ getValidations),
+/* harmony export */   "validateForm": () => (/* binding */ validateForm)
 /* harmony export */ });
 /* harmony import */ var _tools_multiple_selector__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../tools/multiple-selector */ "./src/tools/multiple-selector.js");
 
@@ -4909,7 +4909,7 @@ let validation = {
 
     currInputEls: [],
 
-    msgEl: "",
+    msgEl: "", 
 
     icons: {
         valid: '<i class="fas fa-check-circle signup-validation signup-validation__valid"></i>',
@@ -5040,9 +5040,9 @@ const validateForm = () => {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "loginFormArrow": () => /* binding */ loginFormArrow,
-/* harmony export */   "changeLabelContent": () => /* binding */ changeLabelContent,
-/* harmony export */   "getFormSelection": () => /* binding */ getFormSelection
+/* harmony export */   "loginFormArrow": () => (/* binding */ loginFormArrow),
+/* harmony export */   "changeLabelContent": () => (/* binding */ changeLabelContent),
+/* harmony export */   "getFormSelection": () => (/* binding */ getFormSelection)
 /* harmony export */ });
 /* harmony import */ var _tools_multiple_selector__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../tools/multiple-selector */ "./src/tools/multiple-selector.js");
 /* harmony import */ var _form_validations__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./form-validations */ "./src/components/form-validations.js");
@@ -5065,6 +5065,7 @@ const changeLabelContent = (e, contentToReplace = "Login") => {
     const loginBtn = document.querySelector(".login-label-arrow:nth-child(4)");
     loginBtn.setAttribute("data-after", contentToReplace);
 }
+debugger;
 
 const getFormSelection = () => {
 
@@ -5176,6 +5177,8 @@ __webpack_require__.r(__webpack_exports__);
 
 (0,_app_app__WEBPACK_IMPORTED_MODULE_1__.loginInit)();
 
+const test = "chrooo"; 
+console.log(test);
 
 /***/ }),
 
@@ -5188,7 +5191,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "multiSelect": () => /* binding */ multiSelect
+/* harmony export */   "multiSelect": () => (/* binding */ multiSelect)
 /* harmony export */ });
 const multiSelect = (elements) => {
     const elementArr = elements.map(element => {
@@ -5210,7 +5213,7 @@ const multiSelect = (elements) => {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
 /* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
@@ -5262,8 +5265,8 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 /******/ 		// getDefaultExport function for compatibility with non-harmony modules
 /******/ 		__webpack_require__.n = (module) => {
 /******/ 			var getter = module && module.__esModule ?
-/******/ 				() => module['default'] :
-/******/ 				() => module;
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
 /******/ 			__webpack_require__.d(getter, { a: getter });
 /******/ 			return getter;
 /******/ 		};
@@ -5295,7 +5298,7 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 /******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
-/******/ 		__webpack_require__.o = (obj, prop) => Object.prototype.hasOwnProperty.call(obj, prop)
+/******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/make namespace object */

@@ -17,6 +17,7 @@ export const changeLabelContent = (e, contentToReplace = "Login") => {
     const loginBtn = document.querySelector(".login-label-arrow:nth-child(4)");
     loginBtn.setAttribute("data-after", contentToReplace);
 }
+debugger;
 
 export const getFormSelection = () => {
 

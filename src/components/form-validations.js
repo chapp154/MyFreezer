@@ -4,7 +4,7 @@ let validation = {
 
     currInputEls: [],
 
-    msgEl: "",
+    msgEl: "", 
 
     icons: {
         valid: '<i class="fas fa-check-circle signup-validation signup-validation__valid"></i>',
