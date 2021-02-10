@@ -1,14 +1,6 @@
-// Login page validation check icons
-.fa-check-circle {
-
-}
-
-.fa-times-circle {
-    
-}
-
 .signup-validation {
     font-size: 2.5rem;
+    opacity: .7;
 
     &__valid{
         color: darkgreen;
