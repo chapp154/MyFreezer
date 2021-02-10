@@ -112,8 +112,6 @@ let validation = {
 
 
     }
-
-
 }
 
 export const getValidations = (formType) => {

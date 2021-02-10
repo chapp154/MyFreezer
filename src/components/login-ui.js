@@ -32,7 +32,8 @@ export const getFormSelection = () => {
             formSelection.createPasswordEl();
             formSelection.changeBtn();
 
-            if (formSelection.state === "login" &&  changeStateMemory[changeStateMemory.length - 1] === "login") {
+            if (formSelection.state === "login" &&  changeStateMemory[changeStateMemory.length - 1] === "login" || 
+                formSelection.state === "login" && changeStateMemory.length < 1)  {
                 console.log("wuff");
                 return;
             };
