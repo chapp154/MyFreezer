@@ -31,12 +31,15 @@ export const getFormSelection = () => {
             formSelection.changeInputIds(formSelection.state);
             formSelection.createPasswordEl();
             formSelection.changeBtn();
-            if (formSelection.state !== "login" &&  changeStateMemory.length !== 0)
+
+            if (formSelection.state === "login" &&  changeStateMemory[changeStateMemory.length - 1] === "login") {
+                console.log("wuff");
+                return;
+            };
             getValidations(formSelection.state);
 
             changeStateMemory = [...changeStateMemory, formSelection.state];
 
-            console.log(changeStateMemory);
     
         })
     })
