@@ -31,9 +31,12 @@ export const getFormSelection = () => {
             formSelection.changeInputIds(formSelection.state);
             formSelection.createPasswordEl();
             formSelection.changeBtn();
+            if (formSelection.state !== "login" &&  changeStateMemory.length !== 0)
             getValidations(formSelection.state);
 
             changeStateMemory = [...changeStateMemory, formSelection.state];
+
+            console.log(changeStateMemory);
     
         })
     })

@@ -14,7 +14,7 @@ let validation = {
     check: {
         values: [false, false, false],
         result: function() {
-
+            return this.check.values.every(value => value === true);
         },
 
     },
@@ -117,10 +117,11 @@ let validation = {
 }
 
 export const getValidations = (formType) => {
-
     let [email, password, passwordCheck] = document.getElementsByClassName("form-input");
 
     validation.ui([email, password, passwordCheck], formType);
-    //validationUI(password, formType)
-
 };
+
+export const validateForm = () => {
+    return validation.check.result();
+}
