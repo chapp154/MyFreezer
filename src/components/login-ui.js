@@ -17,7 +17,6 @@ export const changeLabelContent = (e, contentToReplace = "Login") => {
     const loginBtn = document.querySelector(".login-label-arrow:nth-child(4)");
     loginBtn.setAttribute("data-after", contentToReplace);
 }
-debugger;
 
 export const getFormSelection = () => {
 
@@ -35,7 +34,6 @@ export const getFormSelection = () => {
 
             if (formSelection.state === "login" &&  changeStateMemory[changeStateMemory.length - 1] === "login" || 
                 formSelection.state === "login" && changeStateMemory.length < 1)  {
-                console.log("wuff");
                 return;
             };
             getValidations(formSelection.state);
@@ -87,11 +85,11 @@ class FormSelector {
         }
 
         if (this.state === "login") {
-            btnSet("Login", "login");
+            btnSet("Login", "btn-login");
             return;
         }
 
-        btnSet("Register", "signup");
+        btnSet("Register", "btn-signup");
 
     }
 

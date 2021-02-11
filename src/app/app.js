@@ -7,10 +7,18 @@ export const loginInit = () => {
     changeLabelContent();
     loginFormArrow();
     getFormSelection();
+    getSignup();
+}
+
+const eventSignup = (e) => {
+    e.preventDefault();
 }
 
 const getSignup = () => {
-    const signupBtn = document.getElementById("signup");
+    const signupBtn = document.querySelector(".btn-form-submit");
 
-    if (!signupBtn) {console.log("btn is not there"); return;};
-}
+    signupBtn.addEventListener("click", eventSignup);
+
+    validateForm();
+
+};

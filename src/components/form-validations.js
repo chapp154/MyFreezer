@@ -14,9 +14,8 @@ let validation = {
     check: {
         values: [false, false, false],
         result: function() {
-            return this.check.values.every(value => value === true);
+            return validation.check.values.every(value => value === true);
         },
-
     },
 
     useMsgEl: function (eventFocus) {
@@ -121,5 +120,10 @@ export const getValidations = (formType) => {
 };
 
 export const validateForm = () => {
-    return validation.check.result();
+    if (validation.check.result()) {
+        return {
+            email: validation.currInputEls[0].value,
+
+        }
+    }
 }

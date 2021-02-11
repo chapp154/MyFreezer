@@ -5,22 +5,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "firefox",
+            "type": "chrome",
             "request": "launch",
-            "reAttach": true,
-            "name": "Launch Firefox debug",
+            "name": "Launch chrome debug",
             "file": "${workspaceFolder}/dist/index.html",
-            "webRoot": "${workspaceFolder}",
-            "url": "http://localhost:8080",
         },
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "Launch Program",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "program": "${workspaceFolder}/dist/index.html"
-        }
     ]
 }

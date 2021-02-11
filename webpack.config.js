@@ -4,10 +4,10 @@ const path = require('path');
 
 module.exports = {
     mode: "development",
-    devtool: false,
+    devtool : 'inline-source-map',
     entry: "./src/index.js",
     output: {
-        filename: "main.js", // add before distro: -[contenthash]
+        filename: "main-[contenthash].js", // add before distro: -[contenthash]
         path: path.resolve(__dirname, "dist")
     },
     plugins: [
