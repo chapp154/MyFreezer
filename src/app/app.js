@@ -1,5 +1,5 @@
 import {loginFormArrow, changeLabelContent, getFormSelection} from "../components/login-ui";
-import {validateForm} from "../components/form-validations";
+import {validationResult} from "../components/form-validations";
 
 
 
@@ -11,7 +11,7 @@ export const loginInit = () => {
 
 const eventSignup = (e) => {
     e.preventDefault();
-    const isValid = validateForm();
+    const isValid = validationResult();
 
     if (e.target.id === "btn-signup" && isValid) {
 

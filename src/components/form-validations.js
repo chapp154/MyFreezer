@@ -113,12 +113,12 @@ let validation = {
     }
 }
 
-export const getValidations = (formType) => {
+export const runValidations = (formType) => {
     let [email, password, passwordCheck] = document.getElementsByClassName("form-input");
 
     validation.ui([email, password, passwordCheck], formType);
 };
 
-export const validateForm = () => {
+export const validationResult = () => {
     return validation.check.result() ? true : false;
 }

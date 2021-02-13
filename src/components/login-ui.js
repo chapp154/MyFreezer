@@ -1,5 +1,5 @@
 import {multiSelect} from '../tools/multiple-selector'
-import {getValidations} from "./form-validations";
+import {runValidations} from "./form-validations";
 
 export const loginFormArrow = () => {
     const elements = document.querySelectorAll(".login-label-arrow");
@@ -36,7 +36,7 @@ export const getFormSelection = () => {
                 formSelection.state === "login" && changeStateMemory.length < 1)  {
                 return;
             };
-            getValidations(formSelection.state);
+            runValidations(formSelection.state);
 
             changeStateMemory = [...changeStateMemory, formSelection.state];
 
