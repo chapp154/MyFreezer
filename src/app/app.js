@@ -7,18 +7,20 @@ export const loginInit = () => {
     changeLabelContent();
     loginFormArrow();
     getFormSelection();
-    getSignup();
 }
 
 const eventSignup = (e) => {
     e.preventDefault();
-}
+    const isValid = validateForm();
 
-const getSignup = () => {
+    if (e.target.id === "btn-signup" && isValid) {
+
+    }
+}
+const getSignup = (() => {
     const signupBtn = document.querySelector(".btn-form-submit");
 
     signupBtn.addEventListener("click", eventSignup);
 
-    validateForm();
 
-};
+})();

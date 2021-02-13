@@ -120,10 +120,5 @@ export const getValidations = (formType) => {
 };
 
 export const validateForm = () => {
-    if (validation.check.result()) {
-        return {
-            email: validation.currInputEls[0].value,
-
-        }
-    }
+    return validation.check.result() ? true : false;
 }
