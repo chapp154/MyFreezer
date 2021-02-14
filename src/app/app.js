@@ -1,5 +1,6 @@
 import {loginFormArrow, changeLabelContent, getFormSelection} from "../components/login-ui";
 import {validationResult} from "../components/form-validations";
+import {createUser} from "../firebase/auth/create-account";
 
 
 
@@ -7,13 +8,15 @@ export const loginInit = () => {
     changeLabelContent();
     loginFormArrow();
     getFormSelection();
+
 }
 
 const eventSignup = (e) => {
     e.preventDefault();
-    const isValid = validationResult();
+    const validationResultData = validationResult();
 
-    if (e.target.id === "btn-signup" && isValid) {
+    if (e.target.id === "btn-signup" && validationResultData[0]) {
+        createUser(validationResultData[1].email, validationResultData[1].password);
 
     }
 }

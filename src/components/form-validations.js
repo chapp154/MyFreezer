@@ -13,6 +13,10 @@ let validation = {
 
     check: {
         values: [false, false, false],
+        data: {
+            email: '',
+            password: '',    
+        },
         result: function() {
             return validation.check.values.every(value => value === true);
         },
@@ -46,6 +50,7 @@ let validation = {
                         if (splitInput[0].length > 0 && splitInput[1].length > 0) {  
 
                             this.check.values.splice(0, 1, true);
+                            this.check.data.email = input;
                             return this.icons.valid;
                         } 
                     }
@@ -63,7 +68,7 @@ let validation = {
                     paraCheckEl.innerHTML = this.icons.valid;
                 }
 
-                if (input.length >= 4) {
+                if (input.length >= 6) {
                     this.check.values.splice(1, 1, true);
                     return this.icons.valid;
                 }
@@ -72,8 +77,9 @@ let validation = {
             break;
 
             case "password-signup-check":
-                if (input === this.currInputEls[1].value && input.length >= 4) {
+                if (input === this.currInputEls[1].value && input.length >= 6) {
                     this.check.values.splice(2, 1, true);
+                    this.check.data.password = input;
                     return this.icons.valid;
                 }
                 this.check.values.splice(2, 1, false);
@@ -120,5 +126,6 @@ export const runValidations = (formType) => {
 };
 
 export const validationResult = () => {
-    return validation.check.result() ? true : false;
+
+    return [validation.check.result() ? true : false, validation.check.data];
 }
