@@ -20,7 +20,7 @@ const eventSignup = (e) => {
 
     }
 }
-const getSignup = (() => {
+const signupHandler = (() => {
     const signupBtn = document.querySelector(".btn-form-submit");
 
     signupBtn.addEventListener("click", eventSignup);
