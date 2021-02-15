@@ -22,15 +22,17 @@ const eventSignup = async (e) => {
 
         try {
             const userCredential = await createUser(validationResultData[1].email, validationResultData[1].password);
+            new Message(`Succesfully created, you can login now`, "success");
 
         } catch (error) {
+            new Message(error.message, "warning");
             
         }
 
         e.target.disabled = false;
         e.target.textContent = 'Register';
     } else {
-        new Message("Not added", "info");
+        new Message("Please fill in all necessary fields", "info");
     }
 }
 const signupAddHandler = (() => {

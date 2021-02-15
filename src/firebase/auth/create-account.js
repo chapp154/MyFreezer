@@ -11,15 +11,4 @@ export const createUser = (email, password) => {
     resolve(firebase.auth().createUserWithEmailAndPassword(email, password));    
 
   })
-
-    // .then((userCredential) => {
-    //   // Signed in 
-    //   var user = userCredential.user.email;
-
-    // })
-    // .catch((error) => {
-    //   var errorCode = error.code;
-    //   var errorMessage = error.message;
-    //   // .. 
-    // });
 }

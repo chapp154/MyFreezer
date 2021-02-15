@@ -3,7 +3,18 @@
     grid-row: 2 / 3;
 
     & p {
+        position: relative;
+        z-index: 100;
         width: max-content;
-        transform: translateX(-90%);
+        transform: perspective(0) translateZ(0) translateX(-90%);
+        animation: zoomIn 0.3s cubic-bezier(.15,1.49,.75,.84), fadeOut .3s ease 2.7s;
+        font-size: 1.4rem;
+        background: $color-blue-3;
+        color: $color-begie-1;
+        margin-top: 1rem;
+        padding: .5rem 3rem;
+        border-radius: 3px;
+        box-shadow: 0rem 0.3rem 0.4rem rgba(0, 0, 0, 0.1);
+        font-weight: 800;
     }
 }
