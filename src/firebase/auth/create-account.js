@@ -7,15 +7,19 @@ import {db} from "../db-main";
 
 export const createUser = (email, password) => {
 
-    firebase.auth().createUserWithEmailAndPassword(email, password)
-    .then((userCredential) => {
-      // Signed in 
-      var user = userCredential.user.email;
+  return new Promise((resolve, reject) => {
+    resolve(firebase.auth().createUserWithEmailAndPassword(email, password));    
 
-    })
-    .catch((error) => {
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      // .. 
-    });
+  })
+
+    // .then((userCredential) => {
+    //   // Signed in 
+    //   var user = userCredential.user.email;
+
+    // })
+    // .catch((error) => {
+    //   var errorCode = error.code;
+    //   var errorMessage = error.message;
+    //   // .. 
+    // });
 }

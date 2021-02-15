@@ -11,13 +11,18 @@ export const loginInit = () => {
 
 }
 
-const eventSignup = (e) => {
+const eventSignup = async (e) => {
     e.preventDefault();
     const validationResultData = validationResult();
 
     if (e.target.id === "btn-signup" && validationResultData[0]) {
-        createUser(validationResultData[1].email, validationResultData[1].password);
 
+        try {
+            const userCredential = await createUser(validationResultData[1].email, validationResultData[1].password);
+
+        } catch (error) {
+            
+        }
     }
 }
 const signupHandler = (() => {
