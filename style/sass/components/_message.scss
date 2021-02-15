@@ -1,0 +1,9 @@
+.message-box {
+    grid-column: 3 / 4;
+    grid-row: 2 / 3;
+
+    & p {
+        width: max-content;
+        transform: translateX(-90%);
+    }
+}

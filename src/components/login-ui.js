@@ -1,50 +1,6 @@
 import {multiSelect} from '../tools/multiple-selector'
 import {runValidations} from "./form-validations";
 
-export const loginFormArrow = () => {
-    const elements = document.querySelectorAll(".login-label-arrow");
-    elements.forEach(el => {
-        el.addEventListener("click", (e) => changeLabelContent(e));
-    })
-} 
-
-export const changeLabelContent = (e, contentToReplace = "Login") => {
-    if (e) {
-        contentToReplace = e.srcElement.innerText;
-        e.target.setAttribute("data-after", contentToReplace);
-        return
-    }
-    const loginBtn = document.querySelector(".login-label-arrow:nth-child(4)");
-    loginBtn.setAttribute("data-after", contentToReplace);
-}
-
-export const getFormSelection = () => {
-
-    let changeStateMemory = [];
-
-    document.querySelectorAll(".login__options input").forEach((option, index) => {
-
-        option.addEventListener("click", (e) => {
-
-            const formSelection = new FormSelector(e);
-
-            formSelection.changeInputIds(formSelection.state);
-            formSelection.createPasswordEl();
-            formSelection.changeBtn();
-
-            if (formSelection.state === "login" &&  changeStateMemory[changeStateMemory.length - 1] === "login" || 
-                formSelection.state === "login" && changeStateMemory.length < 1)  {
-                return;
-            };
-            runValidations(formSelection.state);
-
-            changeStateMemory = [...changeStateMemory, formSelection.state];
-
-    
-        })
-    })
-}
-
 class FormSelector {
     constructor(state) {
         this.state = state.target.id;
@@ -103,3 +59,52 @@ class FormSelector {
 
     }
 }
+
+export const loginFormArrow = () => {
+    const elements = document.querySelectorAll(".login-label-arrow");
+    elements.forEach(el => {
+        el.addEventListener("click", (e) => changeLabelContent(e));
+    })
+} 
+
+export const changeLabelContent = (e, contentToReplace = "Login") => {
+    if (e) {
+        contentToReplace = e.srcElement.innerText;
+        e.target.setAttribute("data-after", contentToReplace);
+        return
+    }
+    const loginBtn = document.querySelector(".login-label-arrow:nth-child(4)");
+    loginBtn.setAttribute("data-after", contentToReplace);
+}
+
+export const getFormSelection = () => {
+
+    let changeStateMemory = [];
+
+    document.querySelectorAll(".login__options input").forEach((option, index) => {
+
+        option.addEventListener("click", (e) => {
+
+            const formSelection = new FormSelector(e);
+
+            formSelection.changeInputIds(formSelection.state);
+            formSelection.createPasswordEl();
+            formSelection.changeBtn();
+
+            if (formSelection.state === "login" &&  changeStateMemory[changeStateMemory.length - 1] === "login" || 
+                formSelection.state === "login" && changeStateMemory.length < 1)  {
+                return;
+            };
+            runValidations(formSelection.state);
+
+            changeStateMemory = [...changeStateMemory, formSelection.state];
+
+    
+        })
+    })
+}
+
+const signupLoading = () => {
+
+};
+

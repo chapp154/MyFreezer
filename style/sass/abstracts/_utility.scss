@@ -21,4 +21,8 @@
     &__slideClose--fast {
         animation: slideClose .2s;
     }
+
+    &__rotate {
+        animation: rotate 1s ease-in 0s infinite;
+    }
 }
