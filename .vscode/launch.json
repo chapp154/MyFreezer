@@ -7,19 +7,10 @@
     "configurations": [
         {
             "name": "Launch localhost",
-            "type": "firefox",
+            "type": "chrome",
             "request": "launch",
-            "reAttach": true,
             "url": "http://127.0.0.1:8080/dist/",
             "pathMappings": [
-                {
-                    "url": "webpack://myfreezer/src",
-                    "path": "${workspaceFolder}/src"
-                },
-                {
-                    "url": "webpack://myfreezer/src",
-                    "path": "${workspaceFolder}/src"
-                },
                 {
                     "url": "webpack://myfreezer/src",
                     "path": "${workspaceFolder}/src"

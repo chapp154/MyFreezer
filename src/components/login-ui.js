@@ -99,12 +99,8 @@ export const getFormSelection = () => {
 
             changeStateMemory = [...changeStateMemory, formSelection.state];
 
-    
         })
     })
 }
 
-const signupLoading = () => {
-
-};
 

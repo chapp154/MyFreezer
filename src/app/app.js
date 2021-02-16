@@ -2,6 +2,7 @@ import {loginFormArrow, changeLabelContent, getFormSelection} from "../component
 import {validationResult} from "../components/form-validations";
 import {createUser} from "../firebase/auth/create-account";
 import {Message} from "../tools/message";
+import {customClickEvent} from "../tools/customClickEvent";
 
 
 
@@ -13,7 +14,9 @@ export const loginInit = () => {
 }
 
 const eventSignup = async (e) => {
-    e.preventDefault();
+
+    if (e.target.id !== "btn-signup") return;
+
     const validationResultData = validationResult();
 
     if (e.target.id === "btn-signup" && validationResultData[0]) {
@@ -23,6 +26,13 @@ const eventSignup = async (e) => {
         try {
             const userCredential = await createUser(validationResultData[1].email, validationResultData[1].password);
             new Message(`Succesfully created, you can login now`, "success");
+            setTimeout(() => {
+                customClickEvent("input#login");
+
+                const fillEmailEl = document.getElementById("email000login");
+                fillEmailEl.value = userCredential.user.email;
+
+            }, 500);
 
         } catch (error) {
             new Message(error.message, "warning");
@@ -35,11 +45,17 @@ const eventSignup = async (e) => {
         new Message("Please fill in all necessary fields", "info");
     }
 }
-const signupAddHandler = (() => {
-    const signupBtn = document.querySelector(".btn-form-submit");
+const addFormHandler = (() => {
+    const submitBtn = document.querySelector(".btn-form-submit");
+    submitBtn.addEventListener("click", (e) => {
+        e.preventDefault();
 
-    signupBtn.addEventListener("click", eventSignup);
+        if (e.target.id === "btn-login") {
 
-
+            return;
+        } else {
+            eventSignup(e);
+        }
+    });
 })();
 

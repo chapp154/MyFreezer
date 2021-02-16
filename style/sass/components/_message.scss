@@ -7,7 +7,7 @@
         z-index: 100;
         width: max-content;
         transform: perspective(0) translateZ(0) translateX(-90%);
-        animation: zoomIn 0.3s cubic-bezier(.15,1.49,.75,.84), fadeOut .3s ease 2.7s;
+        animation: zoomIn .3s cubic-bezier(.15,1.49,.75,.84), fadeOut .3s ease 2.7s;
         font-size: 1.4rem;
         background: $color-blue-3;
         color: $color-begie-1;
