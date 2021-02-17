@@ -3,6 +3,7 @@ import {validationResult} from "../components/form-validations";
 import {createUser} from "../firebase/auth/create-account";
 import {Message} from "../tools/message";
 import {customClickEvent} from "../tools/customClickEvent";
+import {userLogged} from "../firebase/auth/loginState";
 
 
 
@@ -45,17 +46,20 @@ const eventSignup = async (e) => {
         new Message("Please fill in all necessary fields", "info");
     }
 }
+const eventLogin = async (e) => {
+
+    const state = await userLogged();
+
+    console.log(state);
+    return;
+
+};
 const addFormHandler = (() => {
     const submitBtn = document.querySelector(".btn-form-submit");
     submitBtn.addEventListener("click", (e) => {
         e.preventDefault();
 
-        if (e.target.id === "btn-login") {
-
-            return;
-        } else {
-            eventSignup(e);
-        }
+        e.target.id === "btn-login" ? eventLogin(e) : eventSignup(e);
     });
 })();
 

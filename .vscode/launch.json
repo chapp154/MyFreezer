@@ -5,17 +5,21 @@
 {
     "version": "0.2.0",
     "configurations": [
-        {
-            "name": "Launch Debugger",
-            "type": "chrome",
-            "request": "launch",
-            "url": "http://localhost:8080/dist/",
-            "pathMappings": [
-              {
-                "url": "http://127.0.0.1:8080/src/",
-                "path": "${workspaceFolder}/"
-              }
-            ]
+      {
+        "name": "Launch Debugger",
+        "type": "firefox",
+        "request": "launch",
+        "url": "http://localhost:8080/dist/",
+        "pathMappings": [
+          {
+            "url": "webpack://myfreezer/src",
+            "path": "${workspaceFolder}/src"
+          },
+          {
+            "url": "http://127.0.0.1:8080/src/",
+            "path": "${workspaceFolder}/"
           }
+        ]
+      }
     ]
 }
