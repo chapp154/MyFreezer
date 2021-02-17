@@ -4,7 +4,7 @@ import {runValidations} from "./form-validations";
 class FormSelector {
     constructor(state) {
         this.state = state.target.id;
-    }
+    } 
     
     createPasswordEl() {
         const passwordElementExist = document.getElementById("password-signup-check");
