@@ -3,15 +3,17 @@ import {validationResult} from "../components/form-validations";
 import {createUser} from "../firebase/auth/create-account";
 import {Message} from "../tools/message";
 import {customClickEvent} from "../tools/customClickEvent";
-import {userLogged} from "../firebase/auth/loginState";
-import {loginUser} from "../firebase/auth/login-user";
 import {getLoginInputData} from "../components/login-ui";
+import {loginUser} from "../firebase/auth/login-user";
+import {getLoginState} from "../firebase/auth/login-state";
+
 
 
 export const loginInit = () => {
     changeLabelContent();
     loginFormArrow();
     getFormSelection();
+    getLoginState();
 
 }
 
