@@ -58,10 +58,6 @@ export class FormSelector {
         [email, password, passwordCheck].forEach(el => {if (el) el.value = ""});
 
     }
-
-    getLoginInput() {
-        return "kwakkk";
-    }
 }
 
 export const loginFormArrow = () => {
@@ -105,6 +101,14 @@ export const getFormSelection = () => {
 
         })
     })
+}
+
+export const getLoginInputData = () => {
+
+    const [email, password] = multiSelect("#email000login", "#password000login");
+
+    return [email.value, password.value];
+
 }
 
 

@@ -5,8 +5,7 @@ import {Message} from "../tools/message";
 import {customClickEvent} from "../tools/customClickEvent";
 import {userLogged} from "../firebase/auth/loginState";
 import {loginUser} from "../firebase/auth/login-user";
-import {FormSelector} from "../components/login-ui";
-
+import {getLoginInputData} from "../components/login-ui";
 
 
 export const loginInit = () => {
@@ -48,11 +47,12 @@ const eventSignup = async (e) => {
         new Message("Please fill in all necessary fields", "info");
     }
 }
-const eventLogin = (e) => {
+const eventLogin = async (e) => {
 
-   // const user = loginUser();
+    const [email, password] = getLoginInputData();
 
-   const selection = FormSelector.getLoginInput;
+    const user = await loginUser(email, password);
+
 
     return;
 
