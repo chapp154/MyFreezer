@@ -50,6 +50,13 @@ const eventSignup = async (e) => {
     }
 }
 const eventLogin = async (e) => {
+    
+    const test = await fetch("../../src/test.html");
+
+    const text = await test.text();
+    const htmll = document.querySelector("html");
+
+    htmll.innerHTML = text;
 
     const [email, password] = getLoginInputData();
 
