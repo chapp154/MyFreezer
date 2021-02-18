@@ -1,7 +1,7 @@
 import {multiSelect} from '../tools/multiple-selector'
 import {runValidations} from "./form-validations";
 
-class FormSelector {
+export class FormSelector {
     constructor(state) {
         this.state = state.target.id;
     } 
@@ -57,6 +57,10 @@ class FormSelector {
 
         [email, password, passwordCheck].forEach(el => {if (el) el.value = ""});
 
+    }
+
+    getLoginInput() {
+        return "kwakkk";
     }
 }
 

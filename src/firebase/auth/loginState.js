@@ -5,21 +5,12 @@ import {db} from "../db-main";
 
 export const userLogged = () => {
 
-  return new Promise((resolve, reject) => {
+  var user = firebase.auth().currentUser;
 
-    let state;
-    firebase.auth().onAuthStateChanged(function (user) {
-      if (user) {
-        state = user;
-      } else {
-        state = false;
-      }
-    });
-
-    resolve(state);
-  })
-
-
-
-
+  if (user) {
+    return user;
+  } else {
+    return "no user";
+  }
+    
 }

@@ -4,6 +4,8 @@ import {createUser} from "../firebase/auth/create-account";
 import {Message} from "../tools/message";
 import {customClickEvent} from "../tools/customClickEvent";
 import {userLogged} from "../firebase/auth/loginState";
+import {loginUser} from "../firebase/auth/login-user";
+import {FormSelector} from "../components/login-ui";
 
 
 
@@ -46,11 +48,12 @@ const eventSignup = async (e) => {
         new Message("Please fill in all necessary fields", "info");
     }
 }
-const eventLogin = async (e) => {
+const eventLogin = (e) => {
 
-    const state = await userLogged();
+   // const user = loginUser();
 
-    console.log(state);
+   const selection = FormSelector.getLoginInput;
+
     return;
 
 };
