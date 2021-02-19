@@ -7,7 +7,7 @@
     "configurations": [
       {
         "name": "Launch Debugger",
-        "type": "firefox",
+        "type": "chrome",
         "request": "launch",
         "url": "http://localhost:8080/dist/",
         "pathMappings": [

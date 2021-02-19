@@ -6,6 +6,7 @@ import {customClickEvent} from "../tools/customClickEvent";
 import {getLoginInputData} from "../components/login-ui";
 import {loginUser} from "../firebase/auth/login-user";
 import {getLoginState} from "../firebase/auth/login-state";
+import {renderUserUi} from "../components/render-user-ui";
 
 
 
@@ -51,20 +52,16 @@ const eventSignup = async (e) => {
 }
 const eventLogin = async (e) => {
     
-    const test = await fetch("../../src/test.html");
+    renderUserUi();
 
-    const text = await test.text();
-    const htmll = document.querySelector("html");
 
-    htmll.innerHTML = text;
+    // const [email, password] = getLoginInputData();
 
-    const [email, password] = getLoginInputData();
-
-    const user = await loginUser(email, password);
+    // const user = await loginUser(email, password);
 
 
     return;
-
+ 
 };
 const addFormHandler = (() => {
     const submitBtn = document.querySelector(".btn-form-submit");
