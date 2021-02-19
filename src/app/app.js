@@ -3,9 +3,7 @@ import {validationResult} from "../components/form-validations";
 import {createUser} from "../firebase/auth/create-account";
 import {Message} from "../tools/message";
 import {customClickEvent} from "../tools/customClickEvent";
-import {getLoginInputData} from "../components/login-ui";
 import {loginUser} from "../firebase/auth/login-user";
-import {getLoginState} from "../firebase/auth/login-state";
 import {renderUserUi} from "../components/render-user-ui";
 
 
@@ -14,7 +12,6 @@ export const loginInit = () => {
     changeLabelContent();
     loginFormArrow();
     getFormSelection();
-    getLoginState();
 
 }
 
@@ -51,16 +48,18 @@ const eventSignup = async (e) => {
     }
 }
 const eventLogin = async (e) => {
-    
-    renderUserUi();
+
+    try {
+        const user = await loginUser();
+        new Message("Login successful", "success");
+
+    } catch (error) {
+        new Message(error.message, "warning");
+    }
 
 
-    // const [email, password] = getLoginInputData();
+   // renderUserUi();
 
-    // const user = await loginUser(email, password);
-
-
-    return;
  
 };
 const addFormHandler = (() => {
