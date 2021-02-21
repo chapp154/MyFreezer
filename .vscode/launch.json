@@ -6,11 +6,31 @@
     "version": "0.2.0",
     "configurations": [
       {
+        "type": "firefox",
+        "request": "launch",
+        "reAttach": true,
+        "name": "Launch localhost",
+        "url": "http://localhost/dist/index.html",
+        "webRoot": "${workspaceFolder}"
+      },
+      {
         "name": "Launch Debugger",
-        "type": "chrome",
+        "type": "firefox",
         "request": "launch",
         "url": "http://localhost:8080/dist/",
         "pathMappings": [
+          {
+            "url": "webpack://myfreezer/src",
+            "path": "${workspaceFolder}/src"
+          },
+          {
+            "url": "webpack://myfreezer/src",
+            "path": "${workspaceFolder}/src"
+          },
+          {
+            "url": "webpack://myfreezer/src",
+            "path": "${workspaceFolder}/src"
+          },
           {
             "url": "webpack://myfreezer/src",
             "path": "${workspaceFolder}/src"

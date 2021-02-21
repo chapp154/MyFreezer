@@ -1,20 +1,44 @@
 // Inject Sass
 import "../style/sass/main.scss";
 
+import firebase from 'firebase/app';
+import "firebase/auth";
+
 import {loginInit} from "./app/app";
 import '@fortawesome/fontawesome-free/js/all';
 import {userSigned} from "./firebase/auth/login-state";
-import {renderUserUi} from "./components/render-user-ui";
-
+import {renderUi} from "./components/render-user-ui";
+import {addFormHandler} from "./app/app";
 
 
 const init = (() => {
 
-    const userSign = userSigned();
+  firebase.auth().onIdTokenChanged(async (user) => {
 
-    if (userSigned()[0]) {
-        renderUserUi();
+    if (user) {
+
+      await renderUi("user");
+
+      const btn = document.querySelector("#logout");
+      btn.addEventListener("click", () => {
+        firebase.auth().signOut().then((result) => {
+          return result;
+        })
+      });
+
     } else {
-       // loginInit();
+
+      await renderUi("login");
+      addFormHandler();
+      loginInit();
     }
+  });
+
+
 })();
+
+
+
+
+
+

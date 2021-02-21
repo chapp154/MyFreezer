@@ -5,17 +5,21 @@ import {db} from "../db-main";
 
 export const userSigned = () => {
 
-  firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      var uid = user.uid;
+  // let state = "chroo";
 
-      return [true, uid];
+  // firebase.auth().onAuthStateChanged((user) => {
+  //   if (user) {
+  //     var uid = user.uid;
 
-    } else {
+  //     state = [true, uid];
+
+  //   } else {
       
 
-      return [false];
-    }
-  });
+  //     state = [false];
+  //   }
+  // });
+
+  // return state;
     
-}
+} 

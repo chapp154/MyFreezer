@@ -6,12 +6,14 @@ import {customClickEvent} from "../tools/customClickEvent";
 import {loginUser} from "../firebase/auth/login-user";
 import {renderUserUi} from "../components/render-user-ui";
 
-
+import firebase from 'firebase/app';
+import "firebase/auth";
 
 export const loginInit = () => {
     changeLabelContent();
     loginFormArrow();
     getFormSelection();
+
 
 }
 
@@ -51,23 +53,26 @@ const eventLogin = async (e) => {
 
     try {
         const user = await loginUser();
-        new Message("Login successful", "success");
 
     } catch (error) {
         new Message(error.message, "warning");
     }
 
 
-   // renderUserUi();
-
+    var user = firebase.auth().currentUser;
+if (user) {
+  // User is signed in.
+} else {
+  // No user is signed in.
+}
  
 };
-const addFormHandler = (() => {
+export const addFormHandler = () => {
     const submitBtn = document.querySelector(".btn-form-submit");
     submitBtn.addEventListener("click", (e) => {
         e.preventDefault();
 
         e.target.id === "btn-login" ? eventLogin(e) : eventSignup(e);
     });
-})();
+};
 
