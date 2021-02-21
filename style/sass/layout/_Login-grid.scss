@@ -1,8 +1,7 @@
 .grid-header {
     display: grid;
     grid-template-columns: 5rem auto 5rem;
-    grid-template-rows: 5rem auto 5rem;
-    max-height: 20vh;
+    grid-template-rows: 5rem 10vh 5rem;
 }
 
 .grid-main {

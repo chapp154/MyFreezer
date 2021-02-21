@@ -4,12 +4,13 @@ import {createUser} from "../firebase/auth/create-account";
 import {Message} from "../tools/message";
 import {customClickEvent} from "../tools/customClickEvent";
 import {loginUser} from "../firebase/auth/login-user";
-import {renderUserUi} from "../components/render-user-ui";
+
 
 import firebase from 'firebase/app';
 import "firebase/auth";
 
 export const loginInit = () => {
+    addFormHandler();
     changeLabelContent();
     loginFormArrow();
     getFormSelection();
@@ -18,8 +19,6 @@ export const loginInit = () => {
 }
 
 const eventSignup = async (e) => {
-
-    if (e.target.id !== "btn-signup") return;
 
     const validationResultData = validationResult();
 
