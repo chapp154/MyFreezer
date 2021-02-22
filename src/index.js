@@ -5,29 +5,23 @@ import firebase from 'firebase/app';
 import "firebase/auth";
 
 import '@fortawesome/fontawesome-free/js/all';
-import {renderUi} from "./components/render-user-ui";
+import {renderUi} from "./components/render-ui";
 import {loginInit} from "./app/app";
+import {userInit} from "./app/app";
 
 
 const init = (() => {
 
-  firebase.auth().onIdTokenChanged(async (user) => {
-
-    if (user) {
-
-      await renderUi("user");
-
-      const btn = document.querySelector("#logout");
-      btn.addEventListener("click", () => {
-        firebase.auth().signOut();
-      });
-
-    } else {
-
-      await renderUi("login");
-      loginInit();
-    }
-  });
+    firebase.auth().onIdTokenChanged(async (user) => {
+        if (user) {
+            await renderUi("user");
+            userInit();
+            
+        } else {
+            await renderUi("login");
+            loginInit();
+        }
+    });
 
 
 })();
