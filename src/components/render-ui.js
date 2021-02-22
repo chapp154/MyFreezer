@@ -2,6 +2,10 @@ import {stringToHtml} from "../tools/string-to-html";
 
 export const renderUi = async (uiStyle) => {
 
+	setTimeout(() => {
+		
+	}, 5000);
+
     const body = document.querySelector("body");
     const [oldHeader, oldMain] = [document.querySelector("header"), document.querySelector("main")];
 

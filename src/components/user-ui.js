@@ -22,11 +22,11 @@ export class Visitor {
     async userUpdate() {
         if (this.userName === null) {
             await this.user.updateProfile({
-                displayName: this.userEmail.slice(0, this.userEmail.indexOf('@'))
+                displayName: this.userEmail.slice(0, this.userEmail.indexOf('@')),
             });
             console.log(this.userName);
         }
-    }
+    };
 }
 
 

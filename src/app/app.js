@@ -35,14 +35,6 @@ const eventSignup = async (e) => {
 
         try {
             const userCredential = await createUser(validationResultData[1].email, validationResultData[1].password);
-            new Message(`Succesfully created, you can login now`, "success");
-            setTimeout(() => {
-                customClickEvent("input#login");
-
-                const fillEmailEl = document.getElementById("email000login");
-                fillEmailEl.value = userCredential.user.email;
-
-            }, 500);
 
         } catch (error) {
             new Message(error.message, "warning");
