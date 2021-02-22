@@ -18,8 +18,8 @@ export const loginInit = () => {
 
 }
 
-export const userInit = () => {
-    const visit = new Visitor;
+export const userInit = (user) => {
+    const visit = new Visitor(user);
 
     visit.signOutBtn();
 

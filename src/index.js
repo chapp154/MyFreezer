@@ -15,7 +15,7 @@ const init = (() => {
     firebase.auth().onIdTokenChanged(async (user) => {
         if (user) {
             await renderUi("user");
-            userInit();
+            userInit(user);
             
         } else {
             await renderUi("login");
