@@ -1,13 +1,16 @@
 .animation {
 
-    &__fadeIn--fast {
-        animation: fadeIn .2s;
+    &__fadeIn--fast { // Used for Header and Main section
+        animation: fadeIn .3s;
     }
     &__fadeIn--medium {
         animation: fadeIn 1s;
     }
     &__fadeIn--slow {
         animation: fadeIn 3s;
+    }
+    &__fadeOut--fast { 
+        animation: fadeOut .3s ease-out ;
     }
 
     &__moveDown--fast {

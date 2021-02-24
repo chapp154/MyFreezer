@@ -1,10 +1,10 @@
-import {loginFormArrow, changeLabelContent, getFormSelection} from "../components/login-ui";
-import {validationResult} from "../components/form-validations";
-import {createUser} from "../firebase/auth/create-account";
-import {Message} from "../tools/message";
-import {customClickEvent} from "../tools/customClickEvent";
-import {loginUser} from "../firebase/auth/login-user";
-import {Visitor} from "../components/user-ui";
+import { loginFormArrow, changeLabelContent, getFormSelection } from "../components/login-ui";
+import { validationResult } from "../components/form-validations";
+import { createUser } from "../firebase/auth/create-account";
+import { Message } from "../tools/message";
+import { customClickEvent } from "../tools/customClickEvent";
+import { loginUser } from "../firebase/auth/login-user";
+import { Visitor } from "../components/user-ui";
 
 import firebase from 'firebase/app';
 import "firebase/auth";
@@ -38,7 +38,7 @@ const eventSignup = async (e) => {
 
         } catch (error) {
             new Message(error.message, "warning");
-            
+
         }
 
         e.target.disabled = false;
@@ -48,22 +48,21 @@ const eventSignup = async (e) => {
     }
 }
 const eventLogin = async (e) => {
+    e.target.disabled = true;
+    e.target.innerHTML = '<i class="fas fa-spinner animation__rotate"></i>';
 
     try {
         const user = await loginUser();
+        new Message("Success, loging in...", "success");
+        e.target.textContent = 'Success';
+        return;
 
     } catch (error) {
         new Message(error.message, "warning");
     }
 
-
-    var user = firebase.auth().currentUser;
-if (user) {
-  // User is signed in.
-} else {
-  // No user is signed in.
-}
- 
+    e.target.disabled = false;
+    e.target.textContent = 'Login';
 };
 export const addFormHandler = () => {
     const submitBtn = document.querySelector(".btn-form-submit");

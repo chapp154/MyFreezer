@@ -9,6 +9,7 @@ export class Visitor {
         this.userName = user.displayName;
         this.userEmail = user.email;
         this.userUpdate();
+        this.greeting();
 
     }
 
@@ -19,14 +20,28 @@ export class Visitor {
         });
     }
 
-    async userUpdate() {
+    userUpdate() {
         if (this.userName === null) {
-            await this.user.updateProfile({
-                displayName: this.userEmail.slice(0, this.userEmail.indexOf('@')),
+            const NameFromEmail = this.userEmail.slice(0, this.userEmail.indexOf('@'));
+            let setName;
+
+            if (confirm(`Hi ${NameFromEmail}, is this your name?`)) {
+                setName = NameFromEmail;
+            } else {
+                setName = prompt("Then let me know how you wish to be called.")
+            }
+
+            this.user.updateProfile({
+                displayName: setName,
             });
-            console.log(this.userName);
+            this.userName = setName;
         }
     };
+
+    greeting() {
+        const greetingEl = document.querySelector(".greeting");
+        greetingEl.textContent = `Greetings ${this.userName}`;
+    }
 }
 
 

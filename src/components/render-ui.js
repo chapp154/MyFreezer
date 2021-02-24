@@ -19,12 +19,14 @@ export const renderUi = async (uiStyle) => {
 	const doc = stringToHtml(finalUserHtml);
 	const [userHeader, userMain] = [doc.querySelector("header"), doc.querySelector("main")];
 
-
+	for (let section of [oldHeader, oldMain]) {
+		section.classList.add("animation__fadeOut--fast");
+	}
 
 	setTimeout(() => {
 		body.replaceChild(userHeader, oldHeader);
 		body.replaceChild(userMain, oldMain);
-	}, 3000);
+	}, 300);
 
 
 	return new Promise((resolve, reject) => {
@@ -32,7 +34,7 @@ export const renderUi = async (uiStyle) => {
 			resolve(`${uiStyle} interface loaded`);
 			reject();
 
-		}, 3000);
+		}, 305);
 	});
 
 }
