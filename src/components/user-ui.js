@@ -25,11 +25,10 @@ export class Visitor {
             const NameFromEmail = this.userEmail.slice(0, this.userEmail.indexOf('@'));
             let setName;
 
-            if (confirm(`Hi ${NameFromEmail}, is this your name?`)) {
-                setName = NameFromEmail;
-            } else {
-                setName = prompt("Then let me know how you wish to be called.")
-            }
+            if (confirm(`Hi ${NameFromEmail}, is this your name?`)) setName = NameFromEmail;
+			else setName = prompt("Then let me know how you wish to be called.");
+
+			setName = setName !== null ? setName : "User";
 
             this.user.updateProfile({
                 displayName: setName,
