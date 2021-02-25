@@ -29,4 +29,9 @@
             color: $color-blue-4;
         }
     }
+
+    &__signout {
+        width: 7rem;
+        display: none;
+    }
 }

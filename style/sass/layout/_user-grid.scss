@@ -1,0 +1,13 @@
+header.user {
+    display: grid;
+    grid-template-columns: 100vw;
+    grid-template-rows: 4vh;
+    background: $color-blue-5;
+    justify-items: center;
+}
+
+main.user {
+    display: grid;
+    grid-template-columns: 7rem auto 20rem;
+    grid-template-rows: 96vh;
+}

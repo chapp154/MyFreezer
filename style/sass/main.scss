@@ -11,5 +11,7 @@
 @import "./components/message";
 
 @import "./layout/_Login-grid";
+@import "./layout/_user-grid";
 
-@import "./page/login-page.scss"
+@import "./page/_login-page.scss";
+@import "./page/user-page";

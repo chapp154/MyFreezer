@@ -33,8 +33,7 @@ export const renderUi = async (uiStyle) => {
 		setTimeout(() => {
 			resolve(`${uiStyle} interface loaded`);
 			reject();
-
-		}, 305);
+		}, 301);
 	});
 
 }
