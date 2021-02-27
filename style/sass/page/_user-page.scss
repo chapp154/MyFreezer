@@ -14,22 +14,6 @@
 		position: inherit;
 		z-index: 90;
 
-		& ul {
-			position: relative;
-			top: 7rem;
-            list-style-type: none;
-
-			& li {
-				text-align: center;
-                padding: .98rem 0;
-                background: white;
-
-				&:not(:last-child) {
-                    margin-bottom: 1rem;
-				}
-			}
-		}
-
         &:hover + .menu__content-box{
 			transform: translateX(29.4rem);
         }
@@ -38,8 +22,8 @@
     &__content-box {
         position: absolute;
         width: 30rem;
+		background: $color-white;
         height: calc(100% - 10rem);
-        background: #16425b;
         bottom: 5rem;
         left: -22.5rem;
         z-index: 80;
@@ -49,18 +33,6 @@
         /* clip-path: polygon(0 0, calc(100% - 2rem) 0, 100% 2rem, 100% calc(100% - 2rem), calc(100% - 2rem) 100%, 0 100%); */
         transition: all 0.3s cubic-bezier(0, 1.02, 0, 0.53);
 
-        & ul {
-            position: relative;
-			top: 2rem;
-            list-style-type: none;
-
-            & li {
-
-                &:not(:last-child) {
-                    margin-bottom: 1rem;
-				}
-            }
-        }
 
 		&:hover {
 			transform: translateX(29.4rem);
@@ -68,10 +40,76 @@
         }
     }
 
+	&__items {
+		position: relative;
+		list-style-type: none;
+
+		& li {
+			height: 6rem;
+			margin-bottom: 2rem;
+			display: flex;
+			align-items: center;
+			cursor: pointer;
+			position: inherit;
+
+		}
+
+
+		&--icons {
+			top: 7rem;
+
+			& li {
+				justify-content: center;
+
+			}
+
+		}
+
+		&--text {
+			top: 2rem;
+
+			& li {
+				padding-left: 2rem;
+
+				&:hover {
+					background: $color-blue-4;
+	
+					&::before {
+						content: "";
+						position: absolute;
+						top: -1.5rem;
+						left: -1rem;
+						width: 2rem;
+						height: 2rem;
+						background: $color-white;
+						border-left: 10px solid rgb(22 66 91);
+						border-bottom: 5px solid rgb(22 66 91);
+						border-bottom-left-radius: 20px;
+	
+					}
+	
+					&::after {
+						content: "";
+						position: absolute;
+						bottom: -1.5rem;
+						left: -1rem;
+						width: 2rem;
+						height: 2rem;
+						background: $color-white;
+						border-left: 10px solid rgb(22 66 91);
+						border-top: 5px solid rgb(22 66 91);
+						border-top-left-radius: 20px;
+	
+					}
+				}
+			}
+
+		}
+	}
+
     &__text {
         font-size: 3rem;
-        color: #cd5600;
-        background: white;
+        color: $color-orange-3;
     }
 }
 
