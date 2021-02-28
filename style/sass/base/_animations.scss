@@ -41,11 +41,30 @@
 
 @keyframes zoomIn {
     0% {
-        transform: perspective(10rem) translateZ(-20rem) translateX(-90%);
+        transform: perspective(10rem) translateZ(-20rem) translateX(-50%);
         opacity: 0;
     }
     100% {
         transform: perspective(10rem) translateZ(0) translateX(-90%);
         opacity: 1;
     }
+}
+
+@keyframes lineAround {
+	0% {
+		clip-path: polygon(0% 0, 50% 50%, 50% 50%, 50% 50%, 50% 50%);
+	}
+	25% {
+		clip-path: polygon(0% 0, 100% 0%, 50% 50%, 50% 50%, 50% 50%);
+	}
+	50% {
+		clip-path: polygon(0% 0, 100% 0%, 100% 100%, 50% 50%, 50% 50%);
+	}
+	75% {
+		clip-path: polygon(0% 0, 100% 0%, 100% 100%, 0% 100%, 50% 50%);
+	}
+	100% {
+		clip-path: polygon(0% 0, 100% 0%, 100% 100%, 0% 100%, 0% 0%);
+
+	}
 }
