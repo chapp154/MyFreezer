@@ -10,6 +10,7 @@ export class Visitor {
         this.userEmail = user.email;
         this.userUpdate();
         this.greeting();
+		this.simulateMenuHover();
 
     }
 
@@ -41,6 +42,16 @@ export class Visitor {
         const greetingEl = document.querySelector(".greeting");
         greetingEl.textContent = `Greetings ${this.userName}`;
     }
+
+	simulateMenuHover() {
+		const menuIcons = document.querySelectorAll(".menu__items--icons li");
+		const menuTextLists = document.querySelectorAll(".menu__items--text li");
+
+		menuIcons.forEach((icon, index) => {
+			icon.addEventListener("mouseenter", () => menuTextLists[index].classList.add("menu-hover-clone"));
+			icon.addEventListener("mouseleave", () => menuTextLists[index].classList.remove("menu-hover-clone"));
+		})
+	}
 }
 
 

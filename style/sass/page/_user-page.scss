@@ -24,6 +24,7 @@
         width: 30rem;
 		background: $color-white;
         height: calc(100% - 10rem);
+		padding-right: 2rem;
         bottom: 5rem;
         left: -22.5rem;
         z-index: 80;
@@ -43,6 +44,7 @@
 	&__items {
 		position: relative;
 		list-style-type: none;
+		height: calc(100% - 7rem);
 
 		& li {
 			height: 6rem;
@@ -52,6 +54,10 @@
 			cursor: pointer;
 			position: inherit;
 
+			&:last-child {
+				position: absolute;
+				width: 100%;
+			}
 		}
 
 
@@ -61,8 +67,12 @@
 			& li {
 				justify-content: center;
 
-			}
+				&:last-child {
+					bottom: 5rem;
 
+				}
+
+			}
 		}
 
 		&--text {
@@ -71,8 +81,15 @@
 			& li {
 				padding-left: 2rem;
 
+				&:last-child {
+					bottom: -5rem;
+
+				}
+
 				&:hover {
 					background: $color-blue-4;
+					border-top-right-radius: 20px;
+					border-bottom-right-radius: 20px;
 	
 					&::before {
 						content: "";
@@ -102,13 +119,14 @@
 	
 					}
 				}
+
 			}
 
 		}
 	}
 
     &__text {
-        font-size: 3rem;
+        font-size: 2rem;
         color: $color-orange-3;
     }
 }
@@ -125,4 +143,38 @@
     clip-path: polygon(0 5rem, 5rem 0, 100% 0, 100% 100%, 5rem 100%, 0 calc(100% - 5rem));
     margin-top: 2rem;
     margin-bottom: 2rem;
+}
+
+.menu-hover-clone {
+	background: $color-blue-4;
+	border-top-right-radius: 20px;
+	border-bottom-right-radius: 20px;
+
+	&::before {
+		content: "";
+		position: absolute;
+		top: -1.5rem;
+		left: -1rem;
+		width: 2rem;
+		height: 2rem;
+		background: $color-white;
+		border-left: 10px solid rgb(22 66 91);
+		border-bottom: 5px solid rgb(22 66 91);
+		border-bottom-left-radius: 20px;
+
+	}
+
+	&::after {
+		content: "";
+		position: absolute;
+		bottom: -1.5rem;
+		left: -1rem;
+		width: 2rem;
+		height: 2rem;
+		background: $color-white;
+		border-left: 10px solid rgb(22 66 91);
+		border-top: 5px solid rgb(22 66 91);
+		border-top-left-radius: 20px;
+
+	}
 }
