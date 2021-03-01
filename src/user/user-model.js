@@ -9,6 +9,7 @@ export class UserData {
         this.userID = user.uid;
         this.userName = user.displayName;
         this.userEmail = user.email;
+		this.userHasSettings();
     }
 
     createUserSettings() {
@@ -22,8 +23,19 @@ export class UserData {
         })
     }
 
-    userHasSettings() {
-        
+    async userHasSettings() {
+        const users = db.collection("users").doc(this.userID);
+		const result = await users.get();
+
+		if (!result.exists) {
+			try {await this.createUserSettings()} 
+			catch (error) {console.log(error)}
+		};
+
+
+
+
+		return;
     }
 
 

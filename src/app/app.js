@@ -24,9 +24,7 @@ export const userInit = async (user) => {
     visit.signOutBtn();
 
     const settings = new UserData(user);
-
-    try {await settings.createUserSettings()}
-    catch (error) {console.log(error)}
+    settings.userHasSettings();
     
 
 }
