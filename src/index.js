@@ -19,7 +19,6 @@ const init = (() => {
             
         } else {
             await renderUi("login");
-
             loginInit();
         }
     });

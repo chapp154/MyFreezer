@@ -19,6 +19,10 @@
 }
 
 .icon-first-freezer {
-	font-size: inherit;
 	color: $color-white;
+    font-size: inherit;
+    position: absolute;
+    z-index: 10;
+    transform: translateY(-6rem);
+
 }

@@ -5,6 +5,7 @@ import { Message } from "../tools/message";
 import { customClickEvent } from "../tools/customClickEvent";
 import { loginUser } from "../firebase/auth/login-user";
 import { Visitor } from "../components/user-ui";
+import{ UserData } from "../user/user-model";
 
 import firebase from 'firebase/app';
 import "firebase/auth";
@@ -18,10 +19,15 @@ export const loginInit = () => {
 
 }
 
-export const userInit = (user) => {
+export const userInit = async (user) => {
     const visit = new Visitor(user);
-
     visit.signOutBtn();
+
+    const settings = new UserData(user);
+
+    try {await settings.createUserSettings()}
+    catch (error) {console.log(error)}
+    
 
 }
 

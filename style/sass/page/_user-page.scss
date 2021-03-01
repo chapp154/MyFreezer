@@ -25,23 +25,36 @@
 		transition: all 0.2s ease;
 		cursor: pointer;
 
-
 		&:hover {
 			font-size: 13rem;
 			opacity: 1;
 			background: rgba($color-blue-1, .1);
 			border: none;
 
-			&::after {
+			&::before {
 				content: "";
 				position: absolute;
-				top: 10rem;
-				width: 20rem;
-				height: 20rem;
+				width: 12rem;
+				height: 12rem;
 				background: $color-orange-3;
-				animation: lineAround 10s ease 0s;
+				animation: lineAround .7s ease;
 				border-radius: 10px;
+                z-index: 0;
+                transform: translateY(-6rem);
+
 			}
+
+            &::after {
+                content: "";
+				position: absolute;
+				width: 11rem;
+				height: 11rem;
+                background: #193646;
+				border-radius: 10px;
+                z-index: 5;
+                transform: translateY(-6rem);
+
+            }
 
 		}
 	}

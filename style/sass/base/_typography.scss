@@ -8,5 +8,7 @@ h3 {
     color: aquamarine;
 }
 h6.first-freezer-text {
-	font-size: 10rem !important;
+	font-size: 5rem !important;
+    transform: translateY(6rem);
+    color: rgba($color-white, .3);
 }

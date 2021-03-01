@@ -15,10 +15,14 @@ export class Visitor {
     }
 
     signOutBtn() {
-        const btn = document.querySelector("#signout");
-        btn.addEventListener("click", () => {
-          firebase.auth().signOut();
-        });
+        const btns = document.querySelectorAll("#menu-item-signout");
+        for (let btn of btns) {
+            btn.addEventListener("click", () => {
+                firebase.auth().signOut();
+            });
+        }
+        
+        
     }
 
     userUpdate() {
