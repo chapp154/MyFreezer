@@ -19,12 +19,11 @@ export const loginInit = () => {
 
 }
 
-export const userInit = async (user) => {
+export const userInit = (user) => {
     const visit = new Visitor(user);
     visit.signOutBtn();
 
-    const settings = new UserData(user);
-    settings.userHasSettings();
+    new UserData(user);
     
 
 }
