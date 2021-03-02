@@ -1,0 +1,17 @@
+.loading-main {
+	position: fixed;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	width: 100vw;
+	height: 100vh;
+	background: rgba($color-white, .75);
+	z-index: 100;
+
+	&__bar {
+		font-size: 10rem;
+		animation: rotate 1s ease-in-out 0s infinite;
+		color: $color-orange-3;
+	}
+}
