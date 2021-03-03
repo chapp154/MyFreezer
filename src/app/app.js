@@ -4,9 +4,9 @@ import { createUser } from "../firebase/auth/create-account";
 import { Message } from "../tools/message";
 import { customClickEvent } from "../tools/customClickEvent";
 import { loginUser } from "../firebase/auth/login-user";
-import { Visitor } from "../components/user-ui";
+import { Visitor } from "../user/user-ui";
 import{ UserData } from "../user/user-model";
-import { LargeLoading } from "../tools/loading";
+import { loading } from "../tools/loading";
 
 import firebase from 'firebase/app';
 import "firebase/auth";
@@ -17,7 +17,7 @@ export const loginInit = () => {
     loginFormArrow();
     getFormSelection();
 
-
+	loading.end();
 }
 
 export const userInit = (user) => {

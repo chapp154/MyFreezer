@@ -1,4 +1,5 @@
 import {loading} from "../tools/loading";
+import { Visitor } from "./user-ui";
 
 
 export class UserController {
@@ -9,9 +10,13 @@ export class UserController {
     }
 
     displayFreezer() {
-        if (!this.settings.hasFreezer) {
-            document.querySelector(".info__freezer").remove();
-        }
+		const newFreezerBox = document.querySelector(".info__freezer");
+
+        if (this.settings.hasFreezer) {
+            newFreezerBox.remove();
+        } else {
+			newFreezerBox.addEventListener("click", Visitor.openAddFreezerWindow);
+		}
 
         loading.end();
 
