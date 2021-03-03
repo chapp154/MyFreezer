@@ -20,19 +20,12 @@ export const loginInit = () => {
 
 }
 
-export const userInit = async (user) => {
-
+export const userInit = (user) => {
 
     const visit = new Visitor(user);
     visit.signOutBtn();
-
     new UserData(user);  
-	
-	return new Promise((resolve, reject) => {
-		resolve("User data loaded");
-		reject(error);
-	})
-
+    	
 }
 
 const eventSignup = async (e) => {

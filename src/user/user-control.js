@@ -1,4 +1,4 @@
-
+import {loading} from "../tools/loading";
 
 
 export class UserController {
@@ -12,5 +12,8 @@ export class UserController {
         if (!this.settings.hasFreezer) {
             document.querySelector(".info__freezer").remove();
         }
+
+        loading.end();
+
     }
 }

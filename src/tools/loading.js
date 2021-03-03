@@ -1,23 +1,22 @@
-export class LargeLoading {
-    constructor(type) {
-		this.type = type;
-		this.bg = document.createElement('div');
-		this.main = document.querySelector("main");
-		this.runner();
+export const loading = {
+	start: function() {
+		const bg = document.createElement('div');
+		const body = document.querySelector("body");
+		bg.classList.add("loading-main");
 
-    }
+		const spinner = document.createElement("i");
+		spinner.classList.add("fas");
+		spinner.classList.add("fa-snowflake");
+		spinner.classList.add("loading-main__bar");
 
-    start() { 
-		this.bg.classList.add("loading-main");
-        this.main.insertAdjacentElement("afterbegin", this.bg);
-    }
+		bg.insertAdjacentElement("afterbegin", spinner);
 
-    end() {
+		body.insertAdjacentElement("afterbegin", bg);
+	},
+
+	end: function() {
 		const existingBg = document.querySelector(".loading-main");
 		existingBg.remove();
-    }
 
-	runner() {
-		this.type === "start" ? this.start() : this.end();
 	}
 }

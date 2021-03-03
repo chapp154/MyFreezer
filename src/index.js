@@ -8,15 +8,18 @@ import '@fortawesome/fontawesome-free/js/all';
 import {renderUi} from "./components/render-ui";
 import {loginInit} from "./app/app";
 import {userInit} from "./app/app";
-import { LargeLoading } from "./tools/loading";
+import { loading } from "./tools/loading";
 
 
 const init = (() => {
 
     firebase.auth().onIdTokenChanged(async (user) => {
+        loading.start();
+
         if (user) {
+
             await renderUi("user");
-            await userInit(user);
+            userInit(user);
 
         } else {
             await renderUi("login");
