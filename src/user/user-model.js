@@ -32,24 +32,25 @@ export class UserData {
 		const getSettings = await this.userInitSettings.get();
         try {
             if (!getSettings.exists) {
-                await this.createUserSettings()
+                await this.createUserSettings();
             };
 
             return new Promise((resolve, reject) => {
-                resolve([true, getSettings]);
-                reject([false, null]);
+                resolve(true);
+                reject(false);
             })
 
         } catch (error) {
             console.log(error)
-            return [false, null];
+            return false;
         }
     }
 
     async userHasFreezer() {
         try {
-            const [userHasSettings, getSettings] = await this.userHasSettings();
-            this.userSettingsData = getSettings.data();
+            const userHasSettings = await this.userHasSettings();
+            this.userSettingsData = await this.userInitSettings.get();
+            this.userSettingsData = await this.userSettingsData.data();
 
             if (userHasSettings && !this.userSettingsData.hasFreezer) {
                 //User has no freezer but has created settings 

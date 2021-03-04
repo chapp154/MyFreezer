@@ -1,5 +1,9 @@
 import firebase from 'firebase/app';
 import "firebase/auth";
+import "firebase/firestore";
+import {db} from "../firebase/db-main";
+
+import {loading} from "../tools/loading";
 
 
 export class Visitor {
@@ -8,9 +12,20 @@ export class Visitor {
         this.userID = user.uid;
         this.userName = user.displayName;
         this.userEmail = user.email;
-        this.greeting();
-		this.simulateMenuHover();
 
+    }
+
+    getUserSettings() {
+
+        return new Promise(async(resolve, reject) => {
+
+            const userSettingsAccess = db.collection("users").doc(this.userID).collection("settings").doc("init-settings");
+            const getData = await userSettingsAccess.get();
+            const result = getData.data();
+
+            resolve(result);
+            reject(console.log("Cant load user settings for Visitor"));
+        })
     }
 
     signOutBtn() {
@@ -56,10 +71,26 @@ export class Visitor {
 		})
 	} 
 
-	openAddFreezerWindow() {
-		
-		console.log("chroo");
-	}
+    async displayFreezer() {
+		const newFreezerBox = document.querySelector(".info__freezer");
+        const userSettings = await this.getUserSettings();
+
+        try {
+            if (!userSettings.hasFreezer) {
+                newFreezerBox.remove();
+            } else {
+                newFreezerBox.addEventListener("click", () => {
+                    console.log("add freezer clicked");
+                });
+            }
+        } catch (error) {
+            console.log(error);
+        }
+
+
+        loading.end();
+
+    }
 }
 
 
