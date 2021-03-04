@@ -1,7 +1,6 @@
 import firebase from 'firebase/app';
 import "firebase/firestore";
 import {db} from "../firebase/db-main";
-import {UserController} from "./user-control";
 
 
 export class UserData {
@@ -10,17 +9,15 @@ export class UserData {
         this.userID = user.uid;
         this.userName = user.displayName;
         this.userEmail = user.email;
-        this.userInitSettings = db.collection("users").doc(this.userID).collection("settings").doc("init-settings");
+        this.dbSettingsPath = db.collection("users").doc(this.userID).collection("settings").doc("init-settings");
+        this.getSettings = "";
 
-        this.userSettingsData = "";
-
-        this.userHasFreezer();
     }
 
     createUserSettings() {
         return new Promise((resolve, reject) => {
             resolve(            
-                this.userInitSettings.set({
+                this.dbSettingsPath.set({
                 hasFreezer: false,
                 numberOfFreezers: 0,
             }));
@@ -29,10 +26,11 @@ export class UserData {
     }
 
     async userHasSettings() {
-		const getSettings = await this.userInitSettings.get();
+		const getSettings = await this.dbSettingsPath.get();
         try {
             if (!getSettings.exists) {
                 await this.createUserSettings();
+				this.getSettings = getSettings.data();
             };
 
             return new Promise((resolve, reject) => {
@@ -49,15 +47,13 @@ export class UserData {
     async userHasFreezer() {
         try {
             const userHasSettings = await this.userHasSettings();
-            this.userSettingsData = await this.userInitSettings.get();
-            this.userSettingsData = await this.userSettingsData.data();
 
-            if (userHasSettings && !this.userSettingsData.hasFreezer) {
+            if (userHasSettings && !this.getSettings.hasFreezer) {
                 //User has no freezer but has created settings 
-                new UserController(this.userSettingsData);
+                return true;
             }   
 
-        } catch (error) {console.log(error)};
+        } catch (error) {return false;};
     };
 
 

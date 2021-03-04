@@ -15,19 +15,6 @@ export class Visitor {
 
     }
 
-    getUserSettings() {
-
-        return new Promise(async(resolve, reject) => {
-
-            const userSettingsAccess = db.collection("users").doc(this.userID).collection("settings").doc("init-settings");
-            const getData = await userSettingsAccess.get();
-            const result = getData.data();
-
-            resolve(result);
-            reject(console.log("Cant load user settings for Visitor"));
-        })
-    }
-
     signOutBtn() {
         const btns = document.querySelectorAll("#menu-item-signout");
         for (let btn of btns) {
@@ -76,7 +63,7 @@ export class Visitor {
         const userSettings = await this.getUserSettings();
 
         try {
-            if (!userSettings.hasFreezer) {
+            if (userSettings.hasFreezer) {
                 newFreezerBox.remove();
             } else {
                 newFreezerBox.addEventListener("click", () => {
@@ -84,7 +71,7 @@ export class Visitor {
                 });
             }
         } catch (error) {
-            console.log(error);
+            throw new Error(error);
         }
 
 

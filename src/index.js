@@ -7,7 +7,7 @@ import "firebase/auth";
 import '@fortawesome/fontawesome-free/js/all';
 import {renderUi} from "./components/render-ui";
 import {loginInit} from "./app/app";
-import {userInit} from "./app/app";
+import {userInit} from "./app/user-control";
 import { loading } from "./tools/loading";
 
 

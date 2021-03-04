@@ -2,7 +2,6 @@ import { loginFormArrow, changeLabelContent, getFormSelection } from "../compone
 import { Message } from "../tools/message";
 import {eventLogin, eventSignup} from "../components/login-ui";
 import { Visitor } from "../user/user-ui";
-import{ UserData } from "../user/user-model";
 import { loading } from "../tools/loading";
 
 import firebase from 'firebase/app';
@@ -15,18 +14,6 @@ export const loginInit = () => {
     addFormHandler();
 
 	loading.end();
-}
-
-export const userInit = (user) => {
-
-    const visit = new Visitor(user);
-    visit.signOutBtn();
-    visit.greeting();
-    visit.simulateMenuHover();
-    visit.displayFreezer();
-
-    new UserData(user);  
-    	
 }
 
 const addFormHandler = () => {
