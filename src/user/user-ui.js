@@ -6,13 +6,14 @@ import {db} from "../firebase/db-main";
 import {loading} from "../tools/loading";
 
 
-export class Visitor {
+export class UserUI {
     constructor(user) {
-        this.user = user;
-        this.userID = user.uid;
-        this.userName = user.displayName;
-        this.userEmail = user.email;
-
+        if (user) {
+            this.user = user;
+            this.userID = user.uid;
+            this.userName = user.displayName;
+            this.userEmail = user.email;
+        }
     }
 
     signOutBtn() {
@@ -22,8 +23,6 @@ export class Visitor {
                 firebase.auth().signOut();
             });
         }
-        
-        
     }
 
     userUpdate() {
@@ -58,25 +57,26 @@ export class Visitor {
 		})
 	} 
 
-    async displayFreezer() {
+    displayFreezer(settings, buildFreezer) {
 		const newFreezerBox = document.querySelector(".info__freezer");
-        const userSettings = await this.getUserSettings();
 
         try {
-            if (userSettings.hasFreezer) {
+            if (settings.hasFreezer) {
                 newFreezerBox.remove();
             } else {
                 newFreezerBox.addEventListener("click", () => {
-                    console.log("add freezer clicked");
+                    buildFreezer();
                 });
             }
         } catch (error) {
             throw new Error(error);
         }
 
-
         loading.end();
+    }
 
+    test() {
+        console.log("klovvv");
     }
 }
 
