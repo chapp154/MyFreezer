@@ -10,8 +10,21 @@ export class UserData {
         this.userName = user.displayName;
         this.userEmail = user.email;
         this.dbSettingsPath = db.collection("users").doc(this.userID).collection("settings").doc("init-settings");
-        this.getSettings = "";
+        this.getSettingsTemp = "";
 
+    }
+
+    set getSettings() {
+
+        const request = this.dbSettingsPath.get();
+        const data = request.data();
+ 
+        return data;
+
+    }
+
+    get getSettings() {
+        return this.getSettings;
     }
 
     createUserSettings() {
@@ -26,11 +39,11 @@ export class UserData {
     }
 
     async userHasSettings() {
-		const getSettings = await this.dbSettingsPath.get();
+		const getSettingsTemp = await this.dbSettingsPath.get();
         try {
-            if (!getSettings.exists) {
+            if (!getSettingsTemp.exists) {
                 await this.createUserSettings();
-				this.getSettings = getSettings.data();
+				this.getSettingsTemp = getSettingsTemp.data();
             };
 
             return new Promise((resolve, reject) => {
@@ -48,12 +61,12 @@ export class UserData {
         try {
             const userHasSettings = await this.userHasSettings();
 
-            if (userHasSettings && !this.getSettings.hasFreezer) {
+            if (userHasSettings && !this.getSettingsTemp.hasFreezer) {
                 //User has no freezer but has created settings 
-                return true;
+                return false;
             }   
 
-        } catch (error) {return false;};
+        } catch (error) {throw new Error(error);};
     };
 
 
