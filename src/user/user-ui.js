@@ -75,8 +75,13 @@ export class UserUI {
         loading.end();
     }
 
-    test() {
-        console.log("klovvv");
+    openNewFreezerWindow() {
+
+		const windowBox = document.querySelector(".info__freezer");
+		const window = document.createElement("div");
+		window.classList.add("info__freezer-add");
+
+		windowBox.insertAdjacentElement("afterbegin", window);
     }
 }
 

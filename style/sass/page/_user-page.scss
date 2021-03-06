@@ -55,7 +55,14 @@
                 transform: translateY(-6rem);
 
             }
+		}
 
+		&-add {
+			width: 30rem;
+			height: 100%;
+			background: $color-begie-1;
+			position: relative;
+			z-index: 80;
 		}
 	}
 }

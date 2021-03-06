@@ -5,12 +5,15 @@ import {db} from "../firebase/db-main";
 
 export class UserData {
     constructor(user) {
-        this.user = user;
-        this.userID = user.uid;
-        this.userName = user.displayName;
-        this.userEmail = user.email;
-        this.dbSettingsPath = db.collection("users").doc(this.userID).collection("settings").doc("init-settings");
-        this.getSettings = "";
+		if (user) {
+			this.user = user;
+			this.userID = user.uid;
+			this.userName = user.displayName;
+			this.userEmail = user.email;
+			this.dbSettingsPath = db.collection("users").doc(this.userID).collection("settings").doc("init-settings");
+			this.getSettings = "";
+		}
+
 
     }
 

@@ -20,8 +20,8 @@ export const userInit = async (user) => {
 const controll = {
 
 	buildFreezer() {
-        const builder = new UserUI();
-        builder.test();
+        const freezerBuilder = new UserUI();
+        freezerBuilder.openNewFreezerWindow();
 
         return;
     },
