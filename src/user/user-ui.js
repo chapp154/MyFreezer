@@ -4,6 +4,8 @@ import "firebase/firestore";
 import {db} from "../firebase/db-main";
 
 import {loading} from "../tools/loading";
+import {multiClass} from "../tools/multiClass";
+import {renderAddFreezer} from "../components/render-ui";
 
 
 export class UserUI {
@@ -57,16 +59,14 @@ export class UserUI {
 		})
 	} 
 
-    displayFreezer(settings, buildFreezer) {
-		const newFreezerBox = document.querySelector(".info__freezer");
+    displayFreezer(settings) {
+		const newFreezerBox = document.querySelector(".freezer__add-ctrl");
 
         try {
             if (settings.hasFreezer) {
                 newFreezerBox.remove();
             } else {
-                newFreezerBox.addEventListener("click", () => {
-                    buildFreezer();
-                });
+                newFreezerBox.addEventListener("click", this.eventOpenNewFreezerEl);
             }
         } catch (error) {
             throw new Error(error);
@@ -75,13 +75,18 @@ export class UserUI {
         loading.end();
     }
 
-    openNewFreezerWindow() {
+    async eventOpenNewFreezerEl() {
 
-		const windowBox = document.querySelector(".info__freezer");
-		const window = document.createElement("div");
-		window.classList.add("info__freezer-add");
+		const elBox = document.querySelector(".freezer");
 
-		windowBox.insertAdjacentElement("afterbegin", window);
+		try {
+			const htmlToAdd = await renderAddFreezer();
+			elBox.insertAdjacentElement("beforeend", htmlToAdd);
+		} catch (error) {
+			throw new Error(error);
+		}
+
+
     }
 }
 

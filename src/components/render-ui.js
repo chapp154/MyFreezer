@@ -2,8 +2,6 @@ import {stringToHtml} from "../tools/string-to-html";
 
 export const renderUi = async (uiStyle) => {
 
-
-
     const body = document.querySelector("body");
     const [oldHeader, oldMain] = [document.querySelector("header"), document.querySelector("main")];
 
@@ -35,5 +33,23 @@ export const renderUi = async (uiStyle) => {
 			reject();
 		}, 301);
 	});
+}
 
+export const renderAddFreezer = async () => {
+
+	const fetchHtml = await fetch("../../src/add-freezer.html");
+	const htmlToText = await fetchHtml.text();
+
+	const textStart = htmlToText.indexOf('<div class="freezer__add-open">');
+	const textEnd = htmlToText.indexOf('STOP');
+
+	const selectText = htmlToText.slice(textStart, textEnd);
+
+	const doc = stringToHtml(selectText);
+
+	const result = doc.querySelector(".freezer__add-open");
+
+
+	return new Promise(resolve => resolve(result));
+	
 }

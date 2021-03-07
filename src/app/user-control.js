@@ -3,28 +3,51 @@ import { UserUI } from "../user/user-ui";
 import{ UserData } from "../user/user-model";
 
 
+export const global = {
+	user: "",
+	state: "",
+	access: {
 
-export const userInit = async (user) => {
+	}
+}
+
+export class Global {
+	constructor() {
+
+	}
+
+}
+
+const controll = function() {
+
+
+	return {	
+	
+	}
+}
+
+
+export const userInit = (user) => {
 
 	const userIn = new UserData(user);
-	await userIn.userHasFreezer();
+	const visit = new UserUI(user);
 
-    const visit = new UserUI(user);
-    visit.signOutBtn();
-    visit.greeting();
-    visit.simulateMenuHover();
-    visit.displayFreezer(userIn.getSettings, controll.buildFreezer);
+
+	return {
+		async run() {
+
+			await userIn.userHasFreezer();
+	
+			visit.signOutBtn();
+			visit.greeting();
+			visit.simulateMenuHover();
+			visit.displayFreezer(userIn.getSettings, controll().buildFreezer);
+		},
+
+
+	}
+
     	
 }
 
-const controll = {
 
-	buildFreezer() {
-        const freezerBuilder = new UserUI();
-        freezerBuilder.openNewFreezerWindow();
-
-        return;
-    },
-
-
-}

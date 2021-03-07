@@ -26,3 +26,12 @@
     transform: translateY(-6rem);
 
 }
+
+.close {
+
+	&__add-freezer {
+		font-size: 4rem;
+		float: right;
+		cursor: pointer;
+	}
+}
