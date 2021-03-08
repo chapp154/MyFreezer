@@ -83,6 +83,7 @@ export class UserUI {
 			const htmlToAdd = await renderCreator();
 			elBox.insertAdjacentElement("beforeend", htmlToAdd);
 
+			// Bcz of hoisting
 			UserUI.prototype.creatorClose();
 
 			
