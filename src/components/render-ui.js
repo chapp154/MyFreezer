@@ -35,19 +35,19 @@ export const renderUi = async (uiStyle) => {
 	});
 }
 
-export const renderAddFreezer = async () => {
+export const renderCreator = async () => {
 
 	const fetchHtml = await fetch("../../src/add-freezer.html");
 	const htmlToText = await fetchHtml.text();
 
-	const textStart = htmlToText.indexOf('<div class="freezer__add-open">');
+	const textStart = htmlToText.indexOf('<div class="freezer__creator-open">');
 	const textEnd = htmlToText.indexOf('STOP');
 
 	const selectText = htmlToText.slice(textStart, textEnd);
 
 	const doc = stringToHtml(selectText);
 
-	const result = doc.querySelector(".freezer__add-open");
+	const result = doc.querySelector(".freezer__creator-open");
 
 
 	return new Promise(resolve => resolve(result));

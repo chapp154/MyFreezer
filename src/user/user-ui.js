@@ -5,7 +5,7 @@ import {db} from "../firebase/db-main";
 
 import {loading} from "../tools/loading";
 import {multiClass} from "../tools/multiClass";
-import {renderAddFreezer} from "../components/render-ui";
+import {renderCreator} from "../components/render-ui";
 
 
 export class UserUI {
@@ -60,13 +60,13 @@ export class UserUI {
 	} 
 
     displayFreezer(settings) {
-		const newFreezerBox = document.querySelector(".freezer__add-ctrl");
+		const newFreezerBox = document.querySelector(".freezer__creator-ctrl");
 
         try {
             if (settings.hasFreezer) {
                 newFreezerBox.remove();
             } else {
-                newFreezerBox.addEventListener("click", this.eventOpenNewFreezerEl);
+                newFreezerBox.addEventListener("click", this.eventCreatorOpen);
             }
         } catch (error) {
             throw new Error(error);
@@ -75,19 +75,32 @@ export class UserUI {
         loading.end();
     }
 
-    async eventOpenNewFreezerEl() {
+    async eventCreatorOpen() {
 
 		const elBox = document.querySelector(".freezer");
 
 		try {
-			const htmlToAdd = await renderAddFreezer();
+			const htmlToAdd = await renderCreator();
 			elBox.insertAdjacentElement("beforeend", htmlToAdd);
+
+			UserUI.prototype.creatorClose();
+
+			
 		} catch (error) {
 			throw new Error(error);
 		}
-
-
     }
+	creatorClose() {
+		const closeEl = document.querySelector(".freezer__creator-open-head span");
+		const creatorEl = document.querySelector(".freezer__creator-open");
+		console.log(closeEl);
+
+
+		closeEl.addEventListener("click", () => {
+			creatorEl.remove();
+			console.log("remove");
+		})
+	}
 }
 
 
