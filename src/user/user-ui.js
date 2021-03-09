@@ -81,11 +81,11 @@ export class UserUI {
 
 		try {
 			const htmlToAdd = await renderCreator();
+            htmlToAdd.classList.add("animation__popup");
 			elBox.insertAdjacentElement("beforeend", htmlToAdd);
 
 			// Bcz of hoisting
 			UserUI.prototype.creatorClose();
-
 			
 		} catch (error) {
 			throw new Error(error);
@@ -94,12 +94,10 @@ export class UserUI {
 	creatorClose() {
 		const closeEl = document.querySelector(".freezer__creator-open-head span");
 		const creatorEl = document.querySelector(".freezer__creator-open");
-		console.log(closeEl);
-
 
 		closeEl.addEventListener("click", () => {
-			creatorEl.remove();
-			console.log("remove");
+            creatorEl.classList.add("animation__popout");
+            setTimeout(() => {creatorEl.remove()}, 290);
 		})
 	}
 }
