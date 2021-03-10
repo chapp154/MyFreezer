@@ -105,28 +105,13 @@
 	&__closed {
 		width: 100%;
 		height: calc(100% - 2rem);
-		border: 5px solid rgb(0 0 0);
+		border: 10px solid rgb(0 0 0);
 		border-radius: 10px;
 		position: relative;
 		z-index: 1;
 		transform: rotateY(0);
 		transform-origin: right;
-		transition: all 1s;
-
-
-
-		&-legs { 
-			position: absolute;
-			width: 80%;
-			height: 2.5rem;
-			bottom: -2.6rem;
-			left: 50%;
-			transform: translateX(-50%);
-			border: 3px solid rgb(0 0 0);
-			border-radius: 5px;
-			z-index: inherit;
-
-		}
+		transition: all 10s;
 
 		&-handle {
 			position: absolute;
@@ -145,7 +130,7 @@
 	&__open {
 		width: calc(100% - 3rem);
 		height: calc(100% - 8rem);
-		border: 5px solid green;
+		border: 3px solid rgb(0 0 0);
 		border-radius: 10px;
 		position: absolute;
 		z-index: 2;
@@ -153,7 +138,23 @@
 		&:hover ~ .freezer__closed {
 			transform: rotateY(90deg);
 			transform-origin: right;
+			clip-path: polygon(0 -5rem, 100% 0, 100% 100%, 0 calc(100% + 5rem));
+			box-shadow: 0 0 0.5rem 2rem black;
 		}
+
+		&-legs { 
+			position: absolute;
+			width: 80%;
+			height: 2.5rem;
+			bottom: -2.6rem;
+			left: 50%;
+			transform: translateX(-50%);
+			border: 3px solid rgb(0 0 0);
+			border-radius: 5px;
+			z-index: inherit;
+
+		}
+
 	}
 }
 
