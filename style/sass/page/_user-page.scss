@@ -84,9 +84,9 @@
 			}
 
 			&-img {
-				grid-row: 2 / 3;
-				grid-column: 1 / 2;
-				border-right: 1px solid rgb(255 255 255);
+				grid-row: 2/3;
+				grid-column: 1/2;
+				/* border-right: 1px solid rgb(255 255 255); */
 				padding: 3rem 3rem 3rem 0;
 				display: flex;
 				justify-content: center;
@@ -94,23 +94,27 @@
 				position: relative;
 
 				&:hover > .freezer__closed {
-					transform: perspective(100rem) rotateY(100deg);
+					transform: perspective(324rem) rotateY(94deg);
 					transform-origin: right;
-					//box-shadow: 0 1rem 0.5rem black;
+					box-shadow: -5rem 0rem 2rem 0rem rgba(0, 0, 0, 25%);
+
+						&::after {
+							transform: rotateY(0deg);
+
+						}
 				}
 
 				& > .freezer__closed {
-						width: 100%;
-						height: calc(100% - 2rem);
-						border: 10px solid black;
-						border-radius: 10px;
-						position: relative;
-						z-index: 2;
-						transform: rotateY(0);
-						transform-origin: right;
-						transition: all 1s;
-						background: $color-white;
-						//backface-visibility: hidden;
+					width: 100%;
+					height: calc(100% - 2rem);
+					border-radius: 10px;
+					position: relative;
+					z-index: 2;
+					transform: rotateY(0);
+					transform-origin: right;
+					transition: all 1s;
+					background: rgb(192 192 192);
+					overflow: hidden;
 
 						&::after {
 							content: "";
@@ -119,7 +123,14 @@
 							left: 0;
 							width: 100%;
 							height: 100%;
-							background: $color-white;
+							background: rgb(192 192 192);
+							border-radius: 10px;
+							/* border-right: 20px solid rgb(0 0 0); */
+							transform: rotateY(180deg);
+							transform-origin: right;
+							backface-visibility: hidden;
+							transition: all 1s linear;
+							z-index: inherit;
 						}
 			
 						.freezer__closed-handle {
@@ -132,31 +143,35 @@
 							border-radius: 5px;
 							box-shadow: 10px 0 0 rgba(0, 0, 0, .4);
 							z-index: inherit;
+							backface-visibility: hidden;
 						}
 			
 				}
 			
 				& > .freezer__opened {
-						width: calc(100% - 3rem);
-						height: calc(100% - 8rem);
-						border: 3px solid black;
-						border-radius: 10px;
-						position: absolute;
-						z-index: 1;
+					width: calc(100% - 3rem);
+					height: calc(100% - 8rem);
+					background: rgb(255 255 255);
+					border: 15px solid rgb(192 192 192);
+					border-radius: 10px;
+					position: absolute;
+					z-index: 1;
+					box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 30%);
 			
-						.freezer__opened-legs { 
-							position: absolute;
-							width: 80%;
-							height: 2.5rem;
-							bottom: -2.6rem;
-							left: 50%;
-							transform: translateX(-50%);
-							border: 3px solid rgb(0 0 0);
-							border-radius: 5px;
-							z-index: inherit;
-				
-						}
-			
+				}
+
+				& > .freezer-legs { 
+					position: absolute;
+					width: 80%;
+					height: 2.5rem;
+					bottom: 3rem;
+					/* left: 50%; */
+					/* transform: translateX(-50%); */
+					border: 3px solid rgb(192 192 192);
+					border-bottom-right-radius: 3px;
+					border-bottom-left-radius: 3px;
+					background: rgb(192 192 192);
+		
 				}
 
 			}
