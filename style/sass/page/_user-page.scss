@@ -94,14 +94,13 @@
 				position: relative;
 
 				&:hover > .freezer__closed {
-					transform: perspective(324rem) rotateY(93deg);
-					transform-origin: right;
+					transform: perspective(324rem) rotateY(-93deg);
 					box-shadow: 0rem 0rem 5rem 0rem rgba($color-black, 25%);
 
-						&::after {
-							transform: rotateY(0deg);
+					&::after {
+						transform: rotateY(0deg);
 
-						}
+					}
 				}
 
 				& > .freezer__closed {
@@ -111,7 +110,7 @@
 					position: relative;
 					z-index: 2;
 					transform: rotateY(0);
-					transform-origin: right;
+					transform-origin: left;
 					transition: all 1s;
 					background: $color-silver-3;
 					overflow: hidden;
@@ -126,8 +125,8 @@
 							height: 100%;
 							background: $color-silver-3;
 							border-radius: 10px;
-							transform: rotateY(180deg);
-							transform-origin: right;
+							transform: var(--rotate, rotateY(-180deg));
+							transform-origin: left;
 							backface-visibility: hidden;
 							transition: all 1s linear;
 							z-index: inherit;
@@ -136,7 +135,7 @@
 						.freezer__closed-handle {
 							position: absolute;
 							top: 14rem;
-							left: 3rem;
+							right: 3rem;
 							width: 0;
 							height: 7rem;
 							border: 3px solid $color-black;

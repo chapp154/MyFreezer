@@ -98,6 +98,7 @@ export class UserUI {
 
 		creator.closeWindow();
 		creator.keepDoorOpen();
+		creator.drawerDrag();
 	}
 }
 

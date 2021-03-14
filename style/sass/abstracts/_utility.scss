@@ -36,3 +36,16 @@
         animation: popout .3s ease-out;
     }
 }
+
+.temp {
+
+	&__open-door-hover {
+		transform: perspective(324rem) rotateY(-93deg) !important;
+		box-shadow: 0rem 0rem 5rem 0rem rgba($color-black, 25%) !important;
+	}
+
+	&__open-door-after {
+		transform: rotateY(0deg) !important;
+
+	}
+}
