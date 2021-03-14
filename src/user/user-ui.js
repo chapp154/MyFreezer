@@ -6,6 +6,7 @@ import {db} from "../firebase/db-main";
 import {loading} from "../tools/loading";
 import {multiClass} from "../tools/multiClass";
 import {renderCreator} from "../components/render-ui";
+import {FreezerCreator, freezerCreator} from "../components/freezer-creator";
 
 
 export class UserUI {
@@ -85,20 +86,18 @@ export class UserUI {
 			elBox.insertAdjacentElement("beforeend", htmlToAdd);
 
 			// Bcz of hoisting
-			UserUI.prototype.creatorClose();
+			UserUI.prototype.creatorInit();
 			
 		} catch (error) {
 			throw new Error(error);
 		}
     }
-	creatorClose() {
-		const closeEl = document.querySelector(".freezer__creator-open-head span");
-		const creatorEl = document.querySelector(".freezer__creator-open");
 
-		closeEl.addEventListener("click", () => {
-            creatorEl.classList.add("animation__popout");
-            setTimeout(() => {creatorEl.remove()}, 290);
-		})
+	creatorInit() {
+		const creator = new FreezerCreator();
+
+		creator.closeWindow();
+		creator.keepDoorOpen();
 	}
 }
 
