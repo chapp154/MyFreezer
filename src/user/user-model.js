@@ -1,9 +1,10 @@
 import firebase from 'firebase/app';
 import "firebase/firestore";
 import {db} from "../firebase/db-main";
+import {global} from "../app/user-control";
 
 
-export class UserData {
+export class UserModel {
     constructor(user) {
 		if (user) {
 			this.user = user;
@@ -17,12 +18,23 @@ export class UserData {
 
     }
 
+    async loadData() {
+        const settingsRequest = await this.dbSettingsPath.get();
+
+        //Attach to global settings
+        global.user = this.user;
+    }
+
     createUserSettings() {
         return new Promise((resolve, reject) => {
             resolve(            
                 this.dbSettingsPath.set({
                 hasFreezer: false,
                 numberOfFreezers: 0,
+                numberOfDrawers: {
+                    first: 0,
+                },
+
             }));
             reject(error);
         })
@@ -59,6 +71,4 @@ export class UserData {
 
         } catch (error) {throw new Error(error);};
     };
-
-
 }

@@ -23,6 +23,10 @@ export class FreezerCreator {
 		});
 	}
 
+	setDrawerSlots() {
+		
+	}
+
 	drawerDrag() {
 		const drawerModel = document.querySelector(".drawer__model-front");
 		const slots = document.querySelectorAll(".drawer");

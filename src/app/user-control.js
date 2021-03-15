@@ -1,35 +1,23 @@
 import {loading} from "../tools/loading";
 import { UserUI } from "../user/user-ui";
-import{ UserData } from "../user/user-model";
+import{ UserModel } from "../user/user-model";
 
 
-export const global = {
-	user: "",
-	state: "",
-	access: {
-
-	}
-}
-
-export class Global {
-	constructor() {
-
-	}
-
-}
 
 const controll = function() {
+	let dataStorage;
 
+	const setUserDb = (globalData) => dataStorage = globalData;
 
 	return {	
-	
+		getData: dataStorage,
 	}
 }
 
 
 export const userInit = (user) => {
 
-	const userIn = new UserData(user);
+	const userIn = new UserModel(user);
 	const visit = new UserUI(user);
 
 
