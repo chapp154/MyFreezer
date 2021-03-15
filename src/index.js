@@ -19,7 +19,7 @@ const init = (() => {
         if (user) {
 
             await renderUi("user");
-            userInit(user).run();
+            await userInit(user).run();
 
         } else {
             await renderUi("login");

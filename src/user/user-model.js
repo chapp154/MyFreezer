@@ -1,7 +1,6 @@
 import firebase from 'firebase/app';
 import "firebase/firestore";
 import {db} from "../firebase/db-main";
-import {global} from "../app/user-control";
 
 
 export class UserModel {
@@ -16,13 +15,6 @@ export class UserModel {
 		}
 
 
-    }
-
-    async loadData() {
-        const settingsRequest = await this.dbSettingsPath.get();
-
-        //Attach to global settings
-        global.user = this.user;
     }
 
     createUserSettings() {
@@ -71,4 +63,20 @@ export class UserModel {
 
         } catch (error) {throw new Error(error);};
     };
+}
+
+export class UserGlobal extends UserModel {
+	constructor(user) {
+		super(user);
+
+	}
+
+	async globalData() {
+
+		const settingsRequest = await this.dbSettingsPath.get();
+		const settingsResult = settingsRequest.data();
+
+		return settingsResult;
+	}
+
 }

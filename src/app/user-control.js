@@ -1,21 +1,19 @@
 import {loading} from "../tools/loading";
 import { UserUI } from "../user/user-ui";
-import{ UserModel } from "../user/user-model";
+import{ UserModel, UserGlobal } from "../user/user-model";
 
 
 
-const controll = function() {
-	let dataStorage;
+const controller = {
 
-	const setUserDb = (globalData) => dataStorage = globalData;
-
-	return {	
-		getData: dataStorage,
-	}
+	setUserDb: function(globalData) {this.getData = globalData},
+	
 }
 
 
-export const userInit = (user) => {
+export const userInit = async (user) => {
+
+	controller.setUserDb(await new UserGlobal(user).globalData());
 
 	const userIn = new UserModel(user);
 	const visit = new UserUI(user);
@@ -29,7 +27,7 @@ export const userInit = (user) => {
 			visit.signOutBtn();
 			visit.greeting();
 			visit.simulateMenuHover();
-			visit.displayFreezer(userIn.getSettings, controll().buildFreezer);
+			visit.displayFreezer(userIn.getSettings);
 		},
 
 
