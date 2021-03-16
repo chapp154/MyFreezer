@@ -13,20 +13,21 @@ import { loading } from "./tools/loading";
 
 const init = (() => {
 
-    firebase.auth().onIdTokenChanged(async (user) => {
+    firebase.auth().onIdTokenChanged(async (user) => { // need to be async???
         loading.start();
 
         if (user) {
 
             await renderUi("user");
-            await userInit(user).run();
+            const loadUser = await userInit(user);
+            loadUser.run();
 
         } else {
             await renderUi("login");
             loginInit();
         }
     });
-
+ 
 
 })();
 

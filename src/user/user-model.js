@@ -1,6 +1,7 @@
 import firebase from 'firebase/app';
 import "firebase/firestore";
 import {db} from "../firebase/db-main";
+import {controller} from "../app/user-control";
 
 
 export class UserModel {
@@ -52,6 +53,7 @@ export class UserModel {
 
     async userHasFreezer() {
         try {
+            const test = controller.getGlobal;
             const userHasSettings = await this.userHasSettings();
 
             if (userHasSettings && !this.getSettings.hasFreezer) {

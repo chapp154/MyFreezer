@@ -4,34 +4,38 @@ import{ UserModel, UserGlobal } from "../user/user-model";
 
 
 
-const controller = {
-
-	setUserDb: function(globalData) {this.getData = globalData},
+export const controller = {
+	
+	getGlobal: "",
+	setGlobal: function(globalData) {this.getGlobal = globalData},
 	
 }
 
 
 export const userInit = async (user) => {
 
-	controller.setUserDb(await new UserGlobal(user).globalData());
+	controller.setGlobal(await new UserGlobal(user).globalData());
 
-	const userIn = new UserModel(user);
-	const visit = new UserUI(user);
+	const model = new UserModel(user);
+	const view = new UserUI(user);
 
-
-	return {
-		async run() {
-
-			await userIn.userHasFreezer();
-	
-			visit.signOutBtn();
-			visit.greeting();
-			visit.simulateMenuHover();
-			visit.displayFreezer(userIn.getSettings);
-		},
-
-
-	}
+	return new Promise(resolve => {
+		resolve(
+			{
+				async run() {
+		
+					await model.userHasFreezer();
+			
+					view.signOutBtn();
+					view.greeting();
+					view.simulateMenuHover();
+					view.displayFreezer(model.getSettings);
+				},
+		
+		
+			}
+		)
+	})
 
     	
 }
