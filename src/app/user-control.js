@@ -14,7 +14,12 @@ export const controller = {
 
 export const userInit = async (user) => {
 
-	controller.setGlobal(await new UserGlobal(user).globalData());
+	try {
+		controller.setGlobal(await new UserGlobal(user).globalData());
+
+	} catch (error) {
+		throw new Error("Error initiazing user");
+	}
 
 	const model = new UserModel(user);
 	const view = new UserUI(user);

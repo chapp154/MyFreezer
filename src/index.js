@@ -13,7 +13,7 @@ import { loading } from "./tools/loading";
 
 const init = (() => {
 
-    firebase.auth().onIdTokenChanged(async (user) => { // need to be async???
+    firebase.auth().onIdTokenChanged(async (user) => {
         loading.start();
 
         if (user) {

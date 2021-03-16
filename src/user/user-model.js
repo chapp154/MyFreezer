@@ -1,5 +1,6 @@
 import firebase from 'firebase/app';
 import "firebase/firestore";
+import "firebase/auth";
 import {db} from "../firebase/db-main";
 import {controller} from "../app/user-control";
 
@@ -73,12 +74,20 @@ export class UserGlobal extends UserModel {
 
 	}
 
-	async globalData() {
+	globalData() {
 
-		const settingsRequest = await this.dbSettingsPath.get();
-		const settingsResult = settingsRequest.data();
+		return new Promise(async (resolve, reject) => {
 
-		return settingsResult;
+			if (await firebase.auth().currentUser.getIdToken() === await this.user.getIdToken()) {
+
+				const settingsRequest = await this.dbSettingsPath.get();
+				const settingsResult = settingsRequest.data();
+				resolve(settingsResult);
+				return;
+			}
+
+			reject();
+		})
 	}
 
 }
