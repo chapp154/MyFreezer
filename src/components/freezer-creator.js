@@ -28,18 +28,17 @@ export class FreezerCreator {
 	}
 
 	drawerDrag() {
+		const drawerParrent = document.querySelector(".freezer__drawers");
 		const drawerModel = document.querySelector(".drawer__model-front");
-		const slots = document.querySelectorAll(".drawer");
+		const slot = document.querySelector(".drawer-empty");
 
 		drawerModel.addEventListener("dragstart", dragStart);
 		drawerModel.addEventListener("dragend", dragEnd);
 
-		for (const slot of slots) {
-			slot.addEventListener("dragover", dragOver);
-			slot.addEventListener("dragenter", dragEnter);
-			slot.addEventListener("dragleave", dragLeave);
-			slot.addEventListener("drop", () => new DragDrop(slot));
-		}
+		slot.addEventListener("dragover", dragOver);
+		slot.addEventListener("dragenter", dragEnter);
+		slot.addEventListener("dragleave", dragLeave);
+		slot.addEventListener("drop", () => new DragDrop(slot));
 
 		function dragOver(e) {
 			e.preventDefault();
@@ -60,8 +59,7 @@ export class FreezerCreator {
 
 			add() {
 				const cloneDrawer = drawerModel.cloneNode(true);
-				this.slot.textContent = "";
-				this.slot.append(cloneDrawer);
+				drawerParrent.insertAdjacentElement("afterend", cloneDrawer);
 			}
 		}
 

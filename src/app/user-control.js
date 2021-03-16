@@ -12,14 +12,7 @@ export const controller = {
 }
 
 
-export const userInit = async (user) => {
-
-	try {
-		controller.setGlobal(await new UserGlobal(user).globalData());
-
-	} catch (error) {
-		throw new Error("Error initiazing user");
-	}
+export const userInit = (user) => {
 
 	const model = new UserModel(user);
 	const view = new UserUI(user);
@@ -30,19 +23,18 @@ export const userInit = async (user) => {
 				async run() {
 		
 					await model.userHasFreezer();
+
+					try {controller.setGlobal(await new UserGlobal(user).globalData())}
+					catch (error) {throw new Error("Error initiazing user")};
 			
 					view.signOutBtn();
 					view.greeting();
 					view.simulateMenuHover();
-					view.displayFreezer(model.getSettings);
+					view.displayFreezer(controller.getGlobal);
 				},
-		
-		
 			}
 		)
-	})
-
-    	
+	})	
 }
 
 

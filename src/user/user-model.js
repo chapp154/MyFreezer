@@ -54,7 +54,6 @@ export class UserModel {
 
     async userHasFreezer() {
         try {
-            const test = controller.getGlobal;
             const userHasSettings = await this.userHasSettings();
 
             if (userHasSettings && !this.getSettings.hasFreezer) {
@@ -86,7 +85,7 @@ export class UserGlobal extends UserModel {
 				return;
 			}
 
-			reject();
+			reject("Error initiazing user");
 		})
 	}
 
