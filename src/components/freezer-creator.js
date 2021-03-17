@@ -59,7 +59,11 @@ export class FreezerCreator {
 
 			add() {
 				const cloneDrawer = drawerModel.cloneNode(true);
-				drawerParrent.insertAdjacentElement("afterend", cloneDrawer);
+				cloneDrawer.style.transform = "none";
+				const newList = document.createElement("li");
+				newList.classList.add("freezer__drawers-list");
+				newList.appendChild(cloneDrawer);
+				drawerParrent.insertAdjacentElement("beforeend", newList);
 			}
 		}
 
