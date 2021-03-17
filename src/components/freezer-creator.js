@@ -28,6 +28,8 @@ export class FreezerCreator {
 	}
 
 	drawerDrag() {
+		let idIncrement = 0;
+
 		const drawerParrent = document.querySelector(".freezer__drawers");
 		const drawerModel = document.querySelector(".drawer__model-front");
 		const slot = document.querySelector(".drawer-empty");
@@ -38,46 +40,57 @@ export class FreezerCreator {
 		slot.addEventListener("dragover", dragOver);
 		slot.addEventListener("dragenter", dragEnter);
 		slot.addEventListener("dragleave", dragLeave);
-		slot.addEventListener("drop", () => new DragDrop(slot));
+		slot.addEventListener("drop", () => new DragDrop(slot, idIncrement++));
 
 		function dragOver(e) {
-			e.preventDefault();
-			
+			e.preventDefault();	
 		}
 		function dragEnter(e) {
 			e.preventDefault();
-
 		} 
 		function dragLeave() {
-
 		}
 		class DragDrop {
-			constructor(slot) {
+			constructor(slot, idIncrement) {
 				this.slot = slot;
+				this.idIncrement = idIncrement;
 				this.add();
 			}
 
 			add() {
 				const cloneDrawer = drawerModel.cloneNode(true);
 				cloneDrawer.style.transform = "none";
+				this.idIncrement++;
 				const newList = document.createElement("li");
+				newList.id = `drawer-${this.idIncrement}`;
 				newList.classList.add("freezer__drawers-list");
 				newList.appendChild(cloneDrawer);
 				drawerParrent.insertAdjacentElement("beforeend", newList);
+
+				FreezerCreator.prototype.drawerSettings(newList);
 			}
 		}
 
 		function dragStart() {
 			console.log("start");
 		}
-
 		function dragEnd() {
 			console.log("end");
 		}
+	}
 
+	drawerSettings(drawerEl) {
+
+
+		drawerEl.addEventListener("click", eventDrawerSetup);
+		function eventDrawerSetup(e) {
+
+			
+
+			return;
+		}
 
 		return;
-
 	}
 
 	closeWindow() {
