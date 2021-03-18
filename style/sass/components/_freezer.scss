@@ -80,7 +80,24 @@
 			justify-content: space-evenly;
 
 			& .drawer-grid {
-				
+				display: flex;
+				flex-flow: row;
+				flex-wrap: wrap;
+				justify-content: center;
+
+				& p {
+					flex: 0 1 100%;
+					text-align: center;
+
+				}
+
+				& input {
+					flex: 0 1 12%;
+				}
+				& label:not(:last-child) {
+					flex: 0 1 30%;
+ 
+				}
 			}
 
 			& .drawer-content {
