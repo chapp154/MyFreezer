@@ -5,6 +5,7 @@
 export class FreezerCreator {
 
 	constructor() {
+		this.setSettingsTemp = new Map;
 
 	}
 
@@ -21,10 +22,6 @@ export class FreezerCreator {
 			}
 			return;
 		});
-	}
-
-	setDrawerSlots() {
-		
 	}
 
 	drawerDrag() {
@@ -124,6 +121,16 @@ export class FreezerCreator {
 
 		return;
 	}
+
+	saveTempSettings() {
+		const saveBtn = document.querySelector(".drawer-ctrl button");
+		saveBtn.addEventListener("click", eventSave);
+
+		function eventSave() {
+			
+		}
+	}
+
 
 	closeWindow() {
 		const closeEl = document.querySelector(".freezer__creator-open-head span");
