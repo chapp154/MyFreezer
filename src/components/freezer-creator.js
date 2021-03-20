@@ -117,13 +117,12 @@ export class FreezerCreator {
 
 			container.insertAdjacentHTML("beforeend", htmlToInject);
 
-			const saveBtn = document.querySelector(".drawer-ctrl button");
-			saveTempSettings(saveBtn)
 			
 		}
 	}
 
 	saveTempSettings() {
+		const saveBtn = document.querySelector(".drawer-ctrl button");
 		saveBtn.addEventListener("click", eventSave);
 
 		function eventSave() {

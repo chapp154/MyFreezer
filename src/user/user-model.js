@@ -5,7 +5,7 @@ import {db} from "../firebase/db-main";
 import {controller} from "../app/user-control";
 
 
-export class UserModel {
+export class UserModelSettings {
     constructor(user) {
 		if (user) {
 			this.user = user;
@@ -67,7 +67,7 @@ export class UserModel {
     };
 }
 
-export class UserGlobal extends UserModel {
+export class UserGlobal extends UserModelSettings {
 	constructor(user) {
 		super(user);
 
