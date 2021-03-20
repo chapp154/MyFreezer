@@ -50,6 +50,16 @@
 				box-shadow: 0 1rem 1rem rgb(0 0 0 / 25%);
 			}
 		}
+
+		&-info {
+			position: fixed;
+			width: 10rem;
+			height: 10rem;
+			right: -2rem;
+			top: 0;
+			background: olive;
+			display: none;
+		}
 	}
 
 	&__settings {

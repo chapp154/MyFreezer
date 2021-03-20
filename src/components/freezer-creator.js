@@ -5,7 +5,7 @@
 export class FreezerCreator {
 
 	constructor() {
-		this.setSettingsTemp = new Map;
+		this.tempSettings = new Map();
 
 	}
 
@@ -94,10 +94,11 @@ export class FreezerCreator {
 				<div id="drawer-${id}-settings" class="freezer__settings-drawer rendered">
 					<div class="drawer-grid">
 						<p>Do you wish to set a grid on this drawer?</p>
-						<input type="radio" name="grid" id="grid-yes" checked>
+
+						<input type="radio" name="grid" value="true" id="grid-yes" checked>
 						<label for="grid-yes">Yes</label>
 
-						<input type="radio" name="grid" id="grid-no">
+						<input type="radio" name="grid" value="false" id="grid-no">
 						<label for="grid-no">No</label>
 					</div>
 					<div class="drawer-content">
@@ -116,20 +117,71 @@ export class FreezerCreator {
 			`;
 
 			container.insertAdjacentHTML("beforeend", htmlToInject);
+			FreezerCreator.prototype.saveTempSettings(id);
 
-			
 		}
 	}
 
-	saveTempSettings() {
+	saveTempSettings(id) {
 		const saveBtn = document.querySelector(".drawer-ctrl button");
-		saveBtn.addEventListener("click", eventSave);
+		saveBtn.addEventListener("click", eventSave.bind(this));
+
+		if(typeof this.tempSettings !== "object") this.tempSettings = new Map();
 
 		function eventSave() {
-			
+			const gridOptions = document.getElementsByName("grid");
+			const contentValue = document.querySelector(".drawer-content > input").value;
+
+			const hasGrid = Array.from(gridOptions).filter(el => el.checked)[0].value === "true";
+			const content = contentValue.length > 0 ? contentValue : null;
+
+			this.tempSettings.set(id, {grid: hasGrid, content: content});
+
+			this.displaySettings(id);
+
+			return [hasGrid, content];
 		}
 	}
 
+	displaySettings(id) {
+		const drawer = document.querySelector(`#drawer-${id} > .drawer__model-front`);
+		const wrap = document.querySelector(".freezer__opened");
+		const infoIcon = document.createElement("i");
+		infoIcon.classList.add("fas", "fa-info-circle", "icon-info");
+
+		drawer.insertAdjacentElement("beforeend", infoIcon);
+
+		if (drawer.contains(infoIcon)) {
+
+			const infoEl = document.createElement("div");
+			infoEl.classList.add("freezer__drawers-info");
+			infoEl.id = `info-${id}`;
+			infoEl.innerHTML = `<p>Grid: ${this.tempSettings.get(id).grid}</p>
+								<p>Content: ${this.tempSettings.get(id).content}</p>`;
+
+			drawer.addEventListener("mouseenter", show);
+			drawer.addEventListener("mouseleave", hide);
+
+			function show(e) {
+				if(!drawer.contains(infoEl)) {
+					const position = e.target.getBoundingClientRect();
+					infoEl.style.top = `${position.y}px`;
+					infoEl.style.left = `${position.right + 20}px`;
+					wrap.appendChild(infoEl);
+				}
+
+				infoEl.style.display = "inline-block";
+
+				console.log();
+			}
+			function hide() {
+				infoEl.remove();
+
+
+			}
+
+		}
+	}
 
 	closeWindow() {
 		const closeEl = document.querySelector(".freezer__creator-open-head span");
