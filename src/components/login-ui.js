@@ -3,6 +3,7 @@ import {runValidations, validationResult} from "./form-validations";
 import { createUser } from "../firebase/auth/create-account";
 import { loginUser } from "../firebase/auth/login-user";
 import { Message } from "../tools/message";
+import {resetFields} from "./form-validations";
 
 
 
@@ -118,7 +119,7 @@ export const getLoginInputData = () => {
 
 export const eventSignup = async (e) => {
 
-    const validationResultData = validationResult();
+    let validationResultData = validationResult();
 
     if (e.target.id === "btn-signup" && validationResultData[0]) {
         e.target.disabled = true;
@@ -126,6 +127,9 @@ export const eventSignup = async (e) => {
 
         try {
             await createUser(validationResultData[1].email, validationResultData[1].password);
+			// Reset for unwanted signup
+			resetFields();
+			validationResultData = false;
 
         } catch (error) {
             new Message(error.message, "warning");
@@ -136,7 +140,7 @@ export const eventSignup = async (e) => {
         e.target.textContent = 'Register';
     } else {
         new Message("Please fill in all necessary fields", "info");
-    }
+    } 
 }
 export const eventLogin = async (e) => {
     e.target.disabled = true;

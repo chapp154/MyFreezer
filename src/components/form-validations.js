@@ -129,3 +129,11 @@ export const validationResult = () => {
 
     return [validation.check.result() ? true : false, validation.check.data];
 }
+
+export const resetFields = () => {
+	validation.check.values = [false, false, false];
+	validation.check.data = {
+		email: '',
+		password: '',    
+	}
+}

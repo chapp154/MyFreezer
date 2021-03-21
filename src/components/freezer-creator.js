@@ -6,6 +6,7 @@ export class FreezerCreator {
 
 	constructor() {
 		this.tempSettings = new Map();
+		this.btnSaveSettings = document.getElementById("save-settings");
 
 	}
 
@@ -79,7 +80,7 @@ export class FreezerCreator {
 	drawerSettings(drawerEl) {
 
 
-		drawerEl.addEventListener("click", eventDrawerSetup);
+		drawerEl.addEventListener("click", eventDrawerSetup.bind(this));
 		function eventDrawerSetup(e) {
 
 			const eventId = e.currentTarget.id;
@@ -108,7 +109,7 @@ export class FreezerCreator {
 				</div>
 
 				<div class="drawer-ctrl rendered">
-					<button>Confirm</button>
+					<button id="save-temp-settings">Confirm</button>
 					<div class="remove">
 						<span>X</span>
 						<span>Remove</span>
@@ -116,14 +117,17 @@ export class FreezerCreator {
 				</div>
 			`;
 
+			this.btnSaveSettings = document.getElementById("save-settings");
+			if (!this.btnSaveSettings.classList.contains("visible")) this.btnSaveSettings.classList.toggle("visible");
+
 			container.insertAdjacentHTML("beforeend", htmlToInject);
-			FreezerCreator.prototype.saveTempSettings(id);
+			this.saveTempSettings(id);
 
 		}
 	}
 
 	saveTempSettings(id) {
-		const saveBtn = document.querySelector(".drawer-ctrl button");
+		const saveBtn = document.getElementById("save-temp-settings");
 		saveBtn.addEventListener("click", eventSave.bind(this));
 
 		if(typeof this.tempSettings !== "object") this.tempSettings = new Map();
@@ -131,56 +135,65 @@ export class FreezerCreator {
 		function eventSave() {
 			const gridOptions = document.getElementsByName("grid");
 			const contentValue = document.querySelector(".drawer-content > input").value;
+			const childsToRemove = document.querySelectorAll(".rendered");
 
 			const hasGrid = Array.from(gridOptions).filter(el => el.checked)[0].value === "true";
 			const content = contentValue.length > 0 ? contentValue : null;
 
 			this.tempSettings.set(id, {grid: hasGrid, content: content});
 
-			this.displaySettings(id);
+			for (const child of childsToRemove) child.remove();
+			this.btnSaveSettings.classList.toggle("visible");
 
-			return [hasGrid, content];
+
+			this.displaySettings(id);
 		}
 	}
 
 	displaySettings(id) {
 		const drawer = document.querySelector(`#drawer-${id} > .drawer__model-front`);
-		const wrap = document.querySelector(".freezer__opened");
-		const infoIcon = document.createElement("i");
-		infoIcon.classList.add("fas", "fa-info-circle", "icon-info");
+		let infoEl;
 
-		drawer.insertAdjacentElement("beforeend", infoIcon);
+		if (!drawer.classList.contains("is-set")) {
+			const wrap = document.querySelector(".freezer__opened");
+			const infoIcon = document.createElement("i");
+			infoIcon.classList.add("fas", "fa-info-circle", "icon-info");
+	
+			drawer.insertAdjacentElement("beforeend", infoIcon);
 
-		if (drawer.contains(infoIcon)) {
-
-			const infoEl = document.createElement("div");
+			infoEl = document.createElement("div");
 			infoEl.classList.add("freezer__drawers-info");
 			infoEl.id = `info-${id}`;
-			infoEl.innerHTML = `<p>Grid: ${this.tempSettings.get(id).grid}</p>
-								<p>Content: ${this.tempSettings.get(id).content}</p>`;
 
+
+			const position = drawer.getBoundingClientRect();
+			infoEl.style.top = `${position.y}px`;
+			infoEl.style.left = `${position.right + 20}px`;
+			wrap.appendChild(infoEl);
+	
 			drawer.addEventListener("mouseenter", show);
 			drawer.addEventListener("mouseleave", hide);
 
-			function show(e) {
-				if(!drawer.contains(infoEl)) {
-					const position = e.target.getBoundingClientRect();
-					infoEl.style.top = `${position.y}px`;
-					infoEl.style.left = `${position.right + 20}px`;
-					wrap.appendChild(infoEl);
-				}
+			drawer.classList.add("is-set");
 
-				infoEl.style.display = "inline-block";
+		} else {
+			infoEl = document.getElementById(`info-${id}`);
+		}
 
-				console.log();
-			}
-			function hide() {
-				infoEl.remove();
+		infoEl.innerHTML = `<p>Grid: ${this.tempSettings.get(id).grid}</p>
+		<p>Content: ${this.tempSettings.get(id).content}</p>`;
 
 
-			}
+
+		function show() {
+			infoEl.style.display = "inline-block";
+		}
+		function hide() {
+			infoEl.style.display = "none";
 
 		}
+
+
 	}
 
 	closeWindow() {
