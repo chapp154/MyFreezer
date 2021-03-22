@@ -7,6 +7,7 @@ export class FreezerCreator {
 	constructor() {
 		this.tempSettings = new Map();
 		this.btnSaveSettings = document.getElementById("save-settings");
+		this.eventRemoveDrawer = ""
 
 	}
 
@@ -32,7 +33,7 @@ export class FreezerCreator {
 		const drawerModel = document.querySelector(".drawer__model-front");
 		const slot = document.querySelector(".drawer-empty");
 
-		drawerModel.addEventListener("dragstart", dragStart);
+		drawerModel.addEventListener("dragstart", dragStart.bind(this));
 		drawerModel.addEventListener("dragend", dragEnd);
 
 		slot.addEventListener("dragover", dragOver);
@@ -69,11 +70,10 @@ export class FreezerCreator {
 			}
 		}
 
-		function dragStart() {
-			console.log("start");
+		function dragStart(e) {
+			this.eventRemoveDrawer = e;
 		}
 		function dragEnd() {
-			console.log("end");
 		}
 	}
 
@@ -110,10 +110,6 @@ export class FreezerCreator {
 
 				<div class="drawer-ctrl rendered">
 					<button id="save-temp-settings">Confirm</button>
-					<div class="remove">
-						<span>X</span>
-						<span>Remove</span>
-					</div>
 				</div>
 			`;
 
@@ -183,17 +179,30 @@ export class FreezerCreator {
 		infoEl.innerHTML = `<p>Grid: ${this.tempSettings.get(id).grid}</p>
 		<p>Content: ${this.tempSettings.get(id).content}</p>`;
 
-
-
 		function show() {
 			infoEl.style.display = "inline-block";
 		}
 		function hide() {
 			infoEl.style.display = "none";
-
 		}
 
 
+	}
+
+	removeDrawer() {
+		const dragTarget = document.querySelector(".remove");
+
+		dragTarget.addEventListener("dragover", dragOver);
+		dragTarget.addEventListener("drop", remove.bind(this));
+
+		function dragOver(e) {
+			e.preventDefault()
+			console.log("over");
+		};
+		function remove(e) {
+
+			console.log("drop");
+		};
 	}
 
 	closeWindow() {
