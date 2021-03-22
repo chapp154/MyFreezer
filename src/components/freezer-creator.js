@@ -33,13 +33,13 @@ export class FreezerCreator {
 		const drawerModel = document.querySelector(".drawer__model-front");
 		const slot = document.querySelector(".drawer-empty");
 
-		drawerModel.addEventListener("dragstart", dragStart.bind(this));
-		drawerModel.addEventListener("dragend", dragEnd);
+		drawerModel.addEventListener("dragstart", dragStart);
+		drawerModel.addEventListener("dragend", dragEnd.bind(this));
 
 		slot.addEventListener("dragover", dragOver);
 		slot.addEventListener("dragenter", dragEnter);
 		slot.addEventListener("dragleave", dragLeave);
-		slot.addEventListener("drop", () => new DragDrop(slot, idIncrement++));
+		slot.addEventListener("drop", dragDrop.bind(this));
 
 		function dragOver(e) {
 			e.preventDefault();	
@@ -49,29 +49,26 @@ export class FreezerCreator {
 		} 
 		function dragLeave() {
 		}
-		class DragDrop {
-			constructor(slot, idIncrement) {
-				this.slot = slot;
-				this.idIncrement = idIncrement;
-				this.add();
+		function dragDrop() {
+
+			const cloneDrawer = drawerModel.cloneNode(true);
+			cloneDrawer.style.transform = "none";
+			idIncrement++;
+			const newList = document.createElement("li");
+			newList.id = `drawer-${idIncrement}`;
+			newList.classList.add("freezer__drawers-list");
+			newList.appendChild(cloneDrawer);
+			drawerParrent.insertAdjacentElement("beforeend", newList);
+
+			newList.addEventListener("dragstart", dragStartClone.bind(this));
+			function dragStartClone(e) {
+				this.eventRemoveDrawer = e.currentTarget;
 			}
 
-			add() {
-				const cloneDrawer = drawerModel.cloneNode(true);
-				cloneDrawer.style.transform = "none";
-				this.idIncrement++;
-				const newList = document.createElement("li");
-				newList.id = `drawer-${this.idIncrement}`;
-				newList.classList.add("freezer__drawers-list");
-				newList.appendChild(cloneDrawer);
-				drawerParrent.insertAdjacentElement("beforeend", newList);
-
-				FreezerCreator.prototype.drawerSettings(newList);
-			}
+			FreezerCreator.prototype.drawerSettings(newList);
 		}
 
-		function dragStart(e) {
-			this.eventRemoveDrawer = e;
+		function dragStart() {
 		}
 		function dragEnd() {
 		}
@@ -197,12 +194,14 @@ export class FreezerCreator {
 
 		function dragOver(e) {
 			e.preventDefault()
-			console.log("over");
 		};
 		function remove(e) {
-
-			console.log("drop");
+			this.eventRemoveDrawer.remove();
 		};
+	}
+
+	refreshIds() {
+
 	}
 
 	closeWindow() {
