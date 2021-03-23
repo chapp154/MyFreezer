@@ -1,18 +1,21 @@
-import {loading} from "../tools/loading";
+import { loading } from "../tools/loading";
 import { UserUI } from "../user/user-ui";
-import{ UserModelSettings, UserGlobal } from "../user/user-model";
+import { UserModelSettings, UserGlobal } from "../user/user-model";
 
 
 
 export const controller = {
-	
+
 	getGlobal: "",
-	setGlobal: function(globalData) {this.getGlobal = globalData},
-	saveTempDrawer: function() {
+	setGlobal: function (globalData) { this.getGlobal = globalData },
+
+	saveFreezer: function (mapData, numberOfDrawers) {
+
+		
 
 	}
 
-	
+
 }
 
 
@@ -29,18 +32,18 @@ export const userInit = (user) => {
 		resolve(
 			{
 				async run() {
-		
+
 					await model.userHasFreezer();
 
-					try {controller.setGlobal(await new UserGlobal(user).globalData())}
-					catch (error) {throw new Error("Error initiazing user")};
-			
+					try { controller.setGlobal(await new UserGlobal(user).globalData()) }
+					catch (error) { throw new Error("Error initiazing user") };
+
 
 					view.displayFreezer(controller.getGlobal);
 				},
 			}
 		)
-	})	
+	})
 }
 
 

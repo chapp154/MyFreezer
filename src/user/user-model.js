@@ -65,6 +65,10 @@ export class UserModelSettings {
 
         } catch (error) {throw new Error(error);};
     };
+
+	freezerSetup() {
+		
+	}
 }
 
 export class UserGlobal extends UserModelSettings {

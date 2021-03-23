@@ -1,4 +1,4 @@
-
+import {controller} from "../app/user-control";
 
 
 
@@ -245,26 +245,25 @@ export class FreezerCreator {
 				this.tempSettings.delete(oldID);
 
 
-				return "chrooo";
 			}
-
-			return;
 		}
 	}
 
 	saveFreezer() {
 		this.btnSaveSettings.addEventListener("click", save.bind(this));
-
-
-
 		function save() {
-			this.refreshIds()
+			this.refreshIds();
+			const numberOfDrawers = this.numberOfDrawers();
+			controller.saveFreezer(this.tempSettings, numberOfDrawers);
 
-			return "sxsxs";
+
 		}
+	}
 
-		return "hhh";
+	numberOfDrawers() {
+		const drawers = document.querySelectorAll(".freezer__drawers li:not(:first-child)");
 
+		return drawers.length;
 	}
 
 	closeWindow() {
