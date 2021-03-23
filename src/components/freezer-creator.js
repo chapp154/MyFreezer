@@ -197,11 +197,27 @@ export class FreezerCreator {
 		};
 		function remove(e) {
 			this.eventRemoveDrawer.remove();
+			this.removeInfoEl();
+			//this.refreshIds()
+		};
+	}
+
+	removeInfoEl() {
+		const drawerContainer = document.querySelector(".freezer__opened");
+		const id = this.eventRemoveDrawer.id.split("-")[1];
+		const infoEl = document.getElementById(`info-${id}`);
+
+		if (drawerContainer.contains(infoEl)) {
+			
+			infoEl.remove()
 		};
 	}
 
 	refreshIds() {
-
+		const drawerList = document.getElementsByClassName("freezer__drawers-list");
+		Array.from(drawerList).forEach((el, index) => {
+			el.id = index;
+		})
 	}
 
 	closeWindow() {
