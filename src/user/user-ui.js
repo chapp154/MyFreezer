@@ -100,6 +100,7 @@ export class UserUI {
 		creator.keepDoorOpen();
 		creator.drawerDrag();
         creator.removeDrawer();
+        creator.saveFreezer();
 	}
 }
 

@@ -53,9 +53,9 @@ export class FreezerCreator {
 
 			const cloneDrawer = drawerModel.cloneNode(true);
 			cloneDrawer.style.transform = "none";
-			idIncrement++;
 			const newList = document.createElement("li");
 			newList.id = `drawer-${idIncrement}`;
+			idIncrement++;
 			newList.classList.add("freezer__drawers-list");
 			newList.appendChild(cloneDrawer);
 			drawerParrent.insertAdjacentElement("beforeend", newList);
@@ -65,7 +65,7 @@ export class FreezerCreator {
 				this.eventRemoveDrawer = e.currentTarget;
 			}
 
-			FreezerCreator.prototype.drawerSettings(newList);
+			this.drawerSettings(newList);
 		}
 
 		function dragStart() {
@@ -131,7 +131,7 @@ export class FreezerCreator {
 			const childsToRemove = document.querySelectorAll(".rendered");
 
 			const hasGrid = Array.from(gridOptions).filter(el => el.checked)[0].value === "true";
-			const content = contentValue.length > 0 ? contentValue : null;
+			const content = contentValue.length > 0 ? contentValue : "";
 
 			this.tempSettings.set(id, {grid: hasGrid, content: content});
 
@@ -198,7 +198,7 @@ export class FreezerCreator {
 		function remove(e) {
 			this.eventRemoveDrawer.remove();
 			this.removeInfoEl();
-			//this.refreshIds()
+			//this.refreshIds();
 		};
 	}
 
@@ -209,15 +209,62 @@ export class FreezerCreator {
 
 		if (drawerContainer.contains(infoEl)) {
 			
-			infoEl.remove()
+			infoEl.remove();
 		};
 	}
 
 	refreshIds() {
 		const drawerList = document.getElementsByClassName("freezer__drawers-list");
-		Array.from(drawerList).forEach((el, index) => {
-			el.id = index;
-		})
+		Array.from(drawerList).forEach(listLoop.bind(this));
+
+		function listLoop(drawerEl, index) {
+			const oldID = `${drawerEl.id.split("-")[1]}`;
+			const newID = `${index}`;
+			
+			//Refresh temp Map IDs
+			tempMapID.call(this, oldID, newID);
+			
+			//Refresh info IDs
+			infoID(oldID, drawerEl, newID);
+			//Refresh drawer IDs
+			drawerEl.id = `drawer-${newID}`;
+		}
+
+		function infoID(oldID, drawerEl, newID) {
+			const infoEl = document.getElementById(`info-${oldID}`);
+
+			if (document.querySelector(".freezer__opened").contains(infoEl)) {
+				infoEl.id = `info-${newID}`;
+			}
+		}
+
+		function tempMapID(oldID, newID) {
+			if (this.tempSettings.has(oldID) && oldID !== newID) {
+				const oldData = this.tempSettings.get(oldID);
+				this.tempSettings.set(newID, oldData);
+				this.tempSettings.delete(oldID);
+
+
+				return "chrooo";
+			}
+
+			return;
+		}
+	}
+
+	saveFreezer() {
+		this.btnSaveSettings.addEventListener("click", save.bind(this));
+
+
+
+		function save() {
+			this.refreshIds()
+
+			return "sxsxs";
+		}
+
+		return "hhh";
+
 	}
 
 	closeWindow() {
