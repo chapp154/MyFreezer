@@ -79,7 +79,7 @@ export class UserModelSettings {
             matchData() {
                 if (mapData.has(this.order)) {
 
-                } 
+                }
             }
 
 
