@@ -74,7 +74,6 @@ export class UserModelSettings {
             }
 
             createDrawer() {
-                this.result.order = 
             }
 
             matchData() {
