@@ -25,7 +25,7 @@ export class UserModelSettings {
                 this.dbSettingsPath.set({
                 hasFreezer: false,
                 numberOfFreezers: 0,
-                numberOfDrawers: {
+                drawersSetup: {
                     first: 0,
                 },
 
@@ -66,8 +66,39 @@ export class UserModelSettings {
         } catch (error) {throw new Error(error);};
     };
 
-	freezerSetup() {
-		
+	saveFreezerSettings(mapData, numberOfDrawers, getGlobal) {
+        class Drawer{
+            constructor(order) {
+                this.order = order;
+                this.result = {};
+            }
+
+            createDrawer() {
+                this.result.order = 
+            }
+
+            matchData() {
+                if (mapData.has(this.order)) {
+
+                }
+            }
+
+
+        }
+
+        // 1: {grid: true, content: "text"},
+
+        // return new Promise((resolve, reject) => {
+        //     resolve(
+        //         this.dbSettingsPath.set({
+        //             hasFreezer: true,
+        //             numberOfFreezers: getGlobal.numberOfFreezers++,
+        //             numberOfDrawers:
+        //         })
+        //     )
+        // })
+
+		console.log(mapData, numberOfDrawers, getGlobal);
 	}
 }
 

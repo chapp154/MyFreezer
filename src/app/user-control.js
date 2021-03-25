@@ -10,9 +10,8 @@ export const controller = {
 	setGlobal: function (globalData) { this.getGlobal = globalData },
 
 	saveFreezer: function (mapData, numberOfDrawers) {
-
-		
-
+		const saveFreezer = new UserModelSettings;
+		saveFreezer.saveFreezerSettings(mapData, numberOfDrawers, this.getGlobal);
 	}
 
 
