@@ -12,23 +12,21 @@ export class UserModelSettings {
 			this.userID = user.uid;
 			this.userName = user.displayName;
 			this.userEmail = user.email;
-			this.dbSettingsPath = db.collection("users").doc(this.userID).collection("settings").doc("init-settings");
 			this.getSettings = "";
-		}
+		} else {
+            this.userID = controller.getGlobal.userID;
+        }
 
-
+        this.dbSettingsPath = db.collection("users").doc(this.userID).collection("settings").doc("init-settings");
     }
 
     createUserSettings() {
         return new Promise((resolve, reject) => {
             resolve(            
                 this.dbSettingsPath.set({
+                userID: this.userID,
                 hasFreezer: false,
                 numberOfFreezers: 0,
-                drawersSetup: {
-                    first: 0,
-                },
-
             }));
             reject(error);
         })
@@ -67,38 +65,43 @@ export class UserModelSettings {
     };
 
 	saveFreezerSettings(mapData, numberOfDrawers, getGlobal) {
+        let result = {};
+        let freezerCounter = getGlobal.numberOfFreezers;
         class Drawer{
             constructor(order) {
                 this.order = order;
-                this.result = {};
+                this.createDrawer();
             }
 
             createDrawer() {
+                result[this.order] = this.matchData();
             }
 
             matchData() {
                 if (mapData.has(this.order)) {
-
+                    const data = mapData.get(this.order);
+                    return data;
+                } else {
+                    return "Unset";
                 }
             }
-
-
         }
 
-        // 1: {grid: true, content: "text"},
+        for(let i = 0; i < numberOfDrawers; i++) {
+            new Drawer(`${i}`);
+        }
 
-        // return new Promise((resolve, reject) => {
-        //     resolve(
-        //         this.dbSettingsPath.set({
-        //             hasFreezer: true,
-        //             numberOfFreezers: getGlobal.numberOfFreezers++,
-        //             numberOfDrawers:
-        //         })
-        //     )
-        // })
-
-		console.log(mapData, numberOfDrawers, getGlobal);
-	}
+        return new Promise((resolve, reject) => {
+            resolve(
+                this.dbSettingsPath.update({
+                    hasFreezer: true,
+                    numberOfFreezers: freezerCounter++,
+                    numberOfDrawers: result
+                }),
+                getGlobal.hasFreezer = true,
+            )
+        })
+    }
 }
 
 export class UserGlobal extends UserModelSettings {

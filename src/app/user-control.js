@@ -1,6 +1,7 @@
 import { loading } from "../tools/loading";
 import { UserUI } from "../user/user-ui";
 import { UserModelSettings, UserGlobal } from "../user/user-model";
+import { customClickEvent } from "../tools/customClickEvent";
 
 
 
@@ -9,9 +10,18 @@ export const controller = {
 	getGlobal: "",
 	setGlobal: function (globalData) { this.getGlobal = globalData },
 
-	saveFreezer: function (mapData, numberOfDrawers) {
-		const saveFreezer = new UserModelSettings;
-		saveFreezer.saveFreezerSettings(mapData, numberOfDrawers, this.getGlobal);
+	saveFreezer: async function (mapData, numberOfDrawers) {
+		loading.start();
+		const saveFreezer = new UserModelSettings();
+		await saveFreezer.saveFreezerSettings(mapData, numberOfDrawers, this.getGlobal);
+		
+		const reload = new UserModelSettings();
+		await reload.userHasFreezer();
+
+		const render = new UserUI();
+		render.displayFreezer(this.getGlobal);
+
+		customClickEvent(".freezer__creator-open-head span");
 	}
 
 
